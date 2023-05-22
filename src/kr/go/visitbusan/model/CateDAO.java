@@ -34,4 +34,46 @@ public class CateDAO {
 		}
 		return cateList;
 	}
+	
+	public ArrayList<Category> CateListByCateGroup(){
+		ArrayList<Category> cateList = new ArrayList<Category>();
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.CATELIST_BY_CATEGROUP);
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				Category cate = new Category();
+				cate.setCateCode(rs.getString("catecode"));
+				cate.setCateGroup(rs.getString("categroup"));
+				cate.setCateName(rs.getString("cateName"));
+				cateList.add(cate);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
+		}
+		return cateList;
+	}
+	
+	public ArrayList<Category> CateListByCateName(){
+		ArrayList<Category> cateList = new ArrayList<Category>();
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.CATELIST_BY_CATENAME);
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				Category cate = new Category();
+				cate.setCateCode(rs.getString("catecode"));
+				cate.setCateGroup(rs.getString("categroup"));
+				cate.setCateName(rs.getString("cateName"));
+				cateList.add(cate);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
+		}
+		return cateList;
+	}
 }

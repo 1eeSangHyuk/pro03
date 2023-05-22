@@ -30,7 +30,7 @@ public class MySQL8 {
 	public final static String MEMBER_DELETE = "delete from member where id = ?";
 	
 	
-	// MEMBER
+	// NOTICE
 	public final static String NOTICE_LIST_ALL = "select * from notice order by noticeId desc";
 	public final static String NOTICE_DETAIL = "select * from notice where noticeId = ?";
 	public final static String NOTICE_UPDATE_READCNT = "update notice set readcnt = readcnt + 1 where noticeId = ?";
@@ -77,8 +77,8 @@ public class MySQL8 {
 	
 	//cate
 	public final static String CATELIST_BY_CATECODE = "SELECT * FROM CATEGORY WHERE CATECODE LIKE '?||%'";
-	public final static String CATELIST_BY_CATEGROUP = "";
-	public final static String CATELIST_BY_CATENAME = "";
+	public final static String CATELIST_BY_CATEGROUP = "SELECT * FROM CATEGORY WHERE CATEGROUP=?";
+	public final static String CATELIST_BY_CATENAME = "SELECT * FROM CATEGORY WHERE CATENAME=?";
 	
 	//regi
 	public final static String REGI_LIST_BY_MEMBER_ID = "select * from registration where registeredBy=?";

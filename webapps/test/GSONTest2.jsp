@@ -5,7 +5,7 @@
 <%@ page import="java.util.*, java.lang.*" %>
 <%@ page import="java.text.*, java.net.InetAddress" %>
 <%@ page import="com.google.gson.Gson" %>
-<%@ page import="net.visitbusan.test.Sample" %>
+<%@ page import="kr.go.visitbusan.test.Sample" %>
 <c:set var="path1" value="<%=request.getContextPath() %>" />
 <!DOCTYPE html>
 <html>
