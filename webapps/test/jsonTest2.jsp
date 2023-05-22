@@ -44,7 +44,7 @@
 					data:params,
 					cache:false,
 					success:function(obj){
-						console.log(obj);
+						/* console.log(obj); */
 						$("#lst").empty();
 						if(typeof obj.name!="undefined"){
 							$("#lst").append("<li>name : "+obj.name+"</li>");
