@@ -1,12 +1,10 @@
 package kr.go.visitbusan.dto;
 
-import java.util.Date;
-
 public class Review {
 	private String reviewId;
 	private String reviewTitle;
 	private String reviewContent;
-	private Date reviewedAt;
+	private String reviewedAt;
 	private String reviewedBy;
 	private String visitId;
 	private int point;
@@ -31,10 +29,10 @@ public class Review {
 	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
 	}
-	public Date getReviewedAt() {
+	public String getReviewedAt() {
 		return reviewedAt;
 	}
-	public void setReviewedAt(Date reviewedAt) {
+	public void setReviewedAt(String reviewedAt) {
 		this.reviewedAt = reviewedAt;
 	}
 	public String getReviewedBy() {
