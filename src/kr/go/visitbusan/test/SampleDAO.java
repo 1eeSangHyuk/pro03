@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.go.visitbusan.util.MySql8;
+import kr.go.visitbusan.util.MySQL8;
 
 public class SampleDAO {
 	public Connection conn = null;
@@ -18,8 +18,8 @@ public class SampleDAO {
 	public ArrayList<Sample> getSampleList(){
 		ArrayList<Sample> samList = new ArrayList<Sample>();
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.SELECT_SAMPLE_ALL);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.SELECT_SAMPLE_ALL);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Sample sam = new Sample();
@@ -31,7 +31,7 @@ public class SampleDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt, rs);
+			MySQL8.close(conn, pstmt, rs);
 		}
 		return samList;
 	}
@@ -40,8 +40,8 @@ public class SampleDAO {
 	public Sample getSample(String item1){
 		Sample sam = new Sample();
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.SELECT_SAMPLE_ONE);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.SELECT_SAMPLE_ONE);
 			pstmt.setString(1, item1);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -52,7 +52,7 @@ public class SampleDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt, rs);
+			MySQL8.close(conn, pstmt, rs);
 		}
 		return sam;
 	}
@@ -61,15 +61,15 @@ public class SampleDAO {
 	public int insertSample(String item1, int item2){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.INSERT_SAMPLE);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.INSERT_SAMPLE);
 			pstmt.setString(1, item1);
 			pstmt.setInt(2, item2);
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt);
 		}
 		return i;
 	}
@@ -78,15 +78,15 @@ public class SampleDAO {
 	public int updateSample(String item1, int item2){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.UPDATE_SAMPLE);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.UPDATE_SAMPLE);
 			pstmt.setInt(1, item2);
 			pstmt.setString(2, item1);			
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt);
 		}
 		return i;
 	}
@@ -95,14 +95,14 @@ public class SampleDAO {
 	public int deleteSample(String item1){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.DELETE_SAMPLE);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.DELETE_SAMPLE);
 			pstmt.setString(1, item1);			
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt);
 		}
 		return i;
 	}

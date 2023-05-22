@@ -7,10 +7,17 @@ public class Review {
 	private String reviewedAt;
 	private String reviewedBy;
 	private String visitId;
+	private String regId;
 	private int point;
 	private String img;
 	private int likeCnt;
 	
+	public String getRegId() {
+		return regId;
+	}
+	public void setRegId(String regId) {
+		this.regId = regId;
+	}
 	public String getReviewId() {
 		return reviewId;
 	}

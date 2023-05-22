@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Visit;
-import kr.go.visitbusan.util.MySql8;
+import kr.go.visitbusan.util.MySQL8;
 
 public class VisitDAO {
 	private Connection conn = null;
@@ -18,8 +18,8 @@ public class VisitDAO {
 	public ArrayList<Visit> visitListByCateCode(String visitCateCode){
 		ArrayList<Visit> visitList = new ArrayList<Visit>();
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.VISIT_LIST_BY_CATECODE);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.VISIT_LIST_BY_CATECODE);
 			pstmt.setString(1, visitCateCode);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -37,7 +37,7 @@ public class VisitDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt, rs);
+			MySQL8.close(conn, pstmt, rs);
 		}
 		return visitList;
 	}
@@ -45,8 +45,8 @@ public class VisitDAO {
 	public Visit visitByVisitId(String visitId){
 		Visit visit = new Visit();
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.VISIT_LIST_BY_VISITID);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.VISIT_LIST_BY_VISITID);
 			pstmt.setString(1, visitId);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -70,15 +70,15 @@ public class VisitDAO {
 		int vId = 0;
 		String visitId = "";
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.VISIT_ID_GENERATOR);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.VISIT_ID_GENERATOR);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				vId = Integer.parseInt(rs.getString("visitId"));
 			}
 			vId += 1;
 			visitId = vId+"";
-			pstmt = conn.prepareStatement(MySql8.ADMIN_INSERT_VISIT);
+			pstmt = conn.prepareStatement(MySQL8.ADMIN_INSERT_VISIT);
 			pstmt.setString(1, visitId);
 			pstmt.setString(2, visit.getVisitTitle());
 			pstmt.setString(3, visit.getVisitCateCode());
@@ -90,7 +90,7 @@ public class VisitDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt);
 		}
 		return i;
 	}
@@ -98,8 +98,8 @@ public class VisitDAO {
 	public int updateVisit(Visit visit){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.ADMIN_UPDATE_VISIT);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.ADMIN_UPDATE_VISIT);
 			pstmt.setString(1, visit.getVisitTitle());
 			pstmt.setString(2, visit.getVisitCateCode());
 			pstmt.setString(3, visit.getVisitAddr());
@@ -111,7 +111,7 @@ public class VisitDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt);
 		}
 		return i;
 	}
@@ -119,14 +119,14 @@ public class VisitDAO {
 	public int deleteVisit(String visitId){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.ADMIN_UPDATE_VISIT);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.ADMIN_UPDATE_VISIT);
 			pstmt.setString(1, visitId);
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySql8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt);
 		}
 		return i;
 	}

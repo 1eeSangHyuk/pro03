@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Registration;
-import kr.go.visitbusan.util.MySql8;
+import kr.go.visitbusan.util.MySQL8;
 
 public class RegiDAO {
 	private Connection conn = null;
@@ -17,8 +17,8 @@ public class RegiDAO {
 	public ArrayList<Registration> RegiListByMemberId(String memberId){
 		ArrayList<Registration> regiList = new ArrayList<Registration>();
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.REGI_LIST_BY_MEMBER_ID);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.REGI_LIST_BY_MEMBER_ID);
 			pstmt.setString(1, memberId);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -32,7 +32,7 @@ public class RegiDAO {
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 		} finally {
-			MySql8.close(conn, pstmt, rs);
+			MySQL8.close(conn, pstmt, rs);
 		}	
 		return regiList;
 	}
@@ -42,8 +42,8 @@ public class RegiDAO {
 		int rId = 0;
 		String regId = "";
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.REGI_ID_GENERATOR);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.REGI_ID_GENERATOR);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				rId = Integer.parseInt(rs.getString("regId"));
@@ -51,14 +51,14 @@ public class RegiDAO {
 			rId += 1;
 			regId = rId+"";
 			
-			pstmt = conn.prepareStatement(MySql8.INSERT_REGI);
+			pstmt = conn.prepareStatement(MySQL8.INSERT_REGI);
 			pstmt.setString(1, regId);
 			pstmt.setString(2, regi.getRegisteredBy());
 			pstmt.setString(3, regi.getVisitId());
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 		} finally {
-			MySql8.close(conn, pstmt, rs);
+			MySQL8.close(conn, pstmt, rs);
 		}	
 		return i;
 	}
@@ -66,8 +66,8 @@ public class RegiDAO {
 	public int UpdateRegi(Registration regi){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.UPDATE_REGI);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.UPDATE_REGI);
 			pstmt.setString(1, regi.getVisitId());
 			pstmt.setString(2, regi.getRegDate());
 			i = pstmt.executeUpdate();
@@ -80,8 +80,8 @@ public class RegiDAO {
 	public int DeleteRegi(String regId){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.DELETE_REGI);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.DELETE_REGI);
 			pstmt.setString(1, regId);
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -93,8 +93,8 @@ public class RegiDAO {
 	public ArrayList<Registration> AdminRegiListAll(){
 		ArrayList<Registration> regiList = new ArrayList<Registration>();
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.ADMIN_REGI_LIST_ALL);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.ADMIN_REGI_LIST_ALL);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Registration regi = new Registration();
@@ -114,8 +114,8 @@ public class RegiDAO {
 	public int AdminUpdateRstatus(String rStatus, String regId){
 		int i = 0;
 		try {
-			conn = MySql8.getConnection();
-			pstmt = conn.prepareStatement(MySql8.ADMIN_UPDATE_RSTATUS);
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.ADMIN_UPDATE_RSTATUS);
 			pstmt.setString(1, rStatus);
 			pstmt.setString(2, regId);
 			i = pstmt.executeUpdate();

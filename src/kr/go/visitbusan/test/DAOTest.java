@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.go.visitbusan.util.MySql8;
+import kr.go.visitbusan.util.MySQL8;
 
 import org.junit.Test;
 

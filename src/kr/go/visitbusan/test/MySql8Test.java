@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.go.visitbusan.util.MySql8;
+import kr.go.visitbusan.util.MySQL8;
 import kr.go.visitbusan.util.Oracle11;
 
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class MySql8Test {
 	@Test
 	public void test() {
 		try {
-			conn = MySql8.getConnection();
+			conn = MySQL8.getConnection();
 			pstmt = conn.prepareStatement(Oracle11.SELECT_SAMPLE);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
