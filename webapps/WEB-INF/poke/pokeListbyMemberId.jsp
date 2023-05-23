@@ -8,35 +8,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../../common.jsp" %>
-<title>Insert title here</title>
+<jsp:include page="${page }/common.jsp" />
+<title>찜 목록</title>
 </head>
 <body>
-<%@ include file="../../header.jsp" %>
-<table>
-	<thead>
-		<tr>
-			<th>연번</th>
-			<th>visitTitle</th>
-			<th>visitAddr</th>
-			<th colspan="2">regDate</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="" items="" varStatus="status">
-		<tr>
-			<td>${status.count }</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>
-				<a href="DeletePoke">찜 목록에서 제거</a>
-				<a href="InsertRegi">신청하기</a>
-			</td>
-		</tr>
-		</c:forEach>
-	</tbody>
-</table>
-<%@ include file="../../footer.jsp" %>
+<jsp:include page="${page }/header.jsp" />
+<div class="container is-fullhd">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>연번</th>
+				<th>visitTitle</th>
+				<th>visitAddr</th>
+				<th colspan="2">regDate</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%-- <c:forEach var="" items="" varStatus="status"> --%>
+			<tr>
+				<td>${status.count }</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="DeletePoke">찜 목록에서 제거</a>
+					<a href="InsertRegi">신청하기</a>
+				</td>
+			</tr>
+			<%-- </c:forEach> --%>
+		</tbody>
+	</table>
+</div>
+<jsp:include page="${page }/footer.jsp" />
 </body>
 </html>

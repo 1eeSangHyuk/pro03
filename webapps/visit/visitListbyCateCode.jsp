@@ -32,27 +32,40 @@ a:active {
   <h1 class="title" style="text-align: center; color:#fff;">테마여행</h1>
   <h2 class="subtitle"></h2>
 </section>
-<%-- <c:forEach var="visit" items="" > --%>
-<div class="card">
-  <div class="card-image">
-    <figure class="image is-16by9">
-    	<a href="">
-      		<img src="https://bulma.io/images/placeholders/640x360.png" alt="Placeholder image">
-      	</a>
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="content" style="text-align:center;">
-	    <a href="">세계적인 관광도시 부산 5대 매력.</a>
-     	<br>
-     	조회수 좋아요
+<div class="container is-fullhd">
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <div class="card">
+	    <div class="card-image">
+	      <figure class="image is-16by9">
+	    	<a href="">
+	      		<img src="https://bulma.io/images/placeholders/640x360.png" alt="Placeholder image">
+	      	</a>
+	      </figure>
+	    </div> 			
+	    <div class="card-content">
+	      <div class="content" style="text-align:center;">
+		    <a href="">세계적인 관광도시 부산 5대 매력.</a>
+	        <br>
+	                 조회수 좋아요
+	    </div>
+	    </div>
+	  </div>
+    </div>
+    <div class="tile is-parent">
+    </div>
+    <div class="tile is-parent">
+    </div>
+    <div class="tile is-parent">
     </div>
   </div>
-</div>
-<%-- </c:forEach>
-<c:if test="">
-	<h3>현재 헤당하는 여행상품이 존재하지 않습니다.</h3>
-</c:if> --%>
+  </div>
+	<%-- <c:forEach var="visit" items="" > --%>
+	
+	<%-- </c:forEach>
+	<c:if test="">
+		<h3>현재 헤당하는 여행상품이 존재하지 않습니다.</h3>
+	</c:if> --%>
 
 <%@ include file="../footer.jsp" %>
 </body>

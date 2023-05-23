@@ -11,12 +11,11 @@
 <%@ include file="../common.jsp" %>
 <title>detail</title>
 <style>
-.wrap { width: 1300px; margin: 0 auto; }
 </style>
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-<div class="wrap">
+<div class="container is-fullhd">
 	<!--  -->
 	<section class="section is-medium" style="text-align:center;">
 	  <h1 class="title" style="margin-bottom: 40px; ">visitTitle</h1>
@@ -29,8 +28,8 @@
 	<!--  -->
 	<div class="tabs is-centered">
 	  <ul>
-	    <li class="is-active"><a>상세정보</a></li>
-	    <li><a>지도</a></li>
+	    <li><a>상세정보</a></li>
+	    <li class="is-active"><a>지도</a></li>
 	    <li><a>리뷰</a></li>
 	  </ul>
 	</div>

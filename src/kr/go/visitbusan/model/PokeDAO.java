@@ -56,7 +56,7 @@ public class PokeDAO {
 			while(rs.next()){
 				Poke poke = new Poke();
 				poke.setPokeId(rs.getString("pokeId"));
-				poke.setPokedBy(rs.getString("pokedBy"));
+				poke.setPokedBy(pokedBy);
 				poke.setVisitId(rs.getString("visitId"));
 				pokeList.add(poke);
 			}
@@ -68,16 +68,20 @@ public class PokeDAO {
 		return pokeList;
 	}
 	
-	public int CountPokeListByVisitId(){
+	public int CountPokeListByVisitId(String visitId){
 		int i = 0;
 		try {
 			conn = MySQL8.getConnection();
 			pstmt = conn.prepareStatement(MySQL8.COUNT_POKE_LIST_BY_VISIT_ID);
-			i = pstmt.executeUpdate();
+			pstmt.setString(1, visitId);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				i = Integer.parseInt(rs.getString("count"));
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MySQL8.close(conn, pstmt);
+			MySQL8.close(conn, pstmt, rs);
 		}
 		return i;
 	}

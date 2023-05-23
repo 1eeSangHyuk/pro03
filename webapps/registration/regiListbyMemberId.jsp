@@ -13,30 +13,32 @@
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<table>
-	<thead>
-		<tr>
-			<th>연번</th>
-			<th>visitTitle</th>
-			<th>visitAddr</th>
-			<th>regDate</th>
-			<th>rStatus</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="" items="" varStatus="status">
-		<tr>
-			<td>${status.count }</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		</c:forEach>
-	</tbody>
-</table>
+<div class="container is-fullhd">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>연번</th>
+				<th>visitTitle</th>
+				<th>visitAddr</th>
+				<th>regDate</th>
+				<th>rStatus</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="" items="" varStatus="status">
+			<tr>
+				<td>${status.count }</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
 <div>
-	<a href="javascript:history.go(-1)">뒤로가기</a>
+	<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
 </div>
 <%@ include file="../../footer.jsp" %>
 </body>

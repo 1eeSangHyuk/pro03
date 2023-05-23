@@ -13,27 +13,45 @@
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-<h2>regInsert</h2>
-<form action="" method="post">
-	<table class="table" style="width: 90%">
-		<tbody>
-			<tr>
-				<th>visitTitle</th>
-				<td>
-					${list.visitTitle }
-					<input type="hidden" id="registeredBy" name="registeredBy" value="${uid }">
-					<input type="hidden" id="visitId" name="visitId" value="">
-				</td>
-			<tr>
-				<th>regDate</th>
-				<td><input type="date" id="regDate" name="regDate"></td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-<div>
-	<input type="submit" value="visit 신청하기">
-	<a href="javascript:history.go(-1)" class="btn btn-primary">뒤로가기</a>
+<div class="container is-fullhd">
+	<!--  -->
+	<section class="section is-medium" style="text-align:center;">
+	  <h1 class="title" style="margin-bottom: 40px; ">visitTitle</h1>
+	</section>
+	<!--  -->
+	<section class="section is-medium" style="background: url(https://www.visitbusan.net/upload_data/popup/info/163903982942637.jpg); background-position-y: 65%;">
+	</section>
+	<!--  -->
+<!-- 	<div class="tabs is-centered">
+	  <ul>
+	    <li class="is-active"><a>상세정보</a></li>
+	    <li><a>지도</a></li>
+	    <li><a>리뷰</a></li>
+	  </ul>
+	</div> -->
+	
+	<h2 class="title">regInsert</h2>
+	<form action="" method="post">
+		<table class="table" style="width: 90%">
+			<tbody>
+				<tr>
+					<th>visitTitle</th>
+					<td>
+						${list.visitTitle }
+						<input type="hidden" id="registeredBy" name="registeredBy" value="${sid }">
+						<input type="hidden" id="visitId" name="visitId" value="">
+					</td>
+				<tr>
+					<th>regDate</th>
+					<td><input type="date" id="regDate" name="regDate"></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<div>
+		<input type="submit" value="visit 신청하기" class="button is-info">
+		<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
+	</div>
 </div>
 <%@ include file="../footer.jsp" %>
 </body>

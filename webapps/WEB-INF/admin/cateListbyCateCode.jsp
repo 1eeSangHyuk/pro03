@@ -13,8 +13,8 @@
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content">
-	<h2>카테고리 리스트</h2>
+<div class="container is-fullhd">
+	<h2 class="title">카테고리 리스트</h2>
 	<hr>
 	<div class="btn-group">
 		<a href="${path1 }/GetCategoryAll.do?" class="btn btn-default">전체</a>
@@ -25,14 +25,14 @@
 	<hr>
 	<table class="table">
 		<thead>
-			<tr><th>연번</th><th>카테고리번호</th><th>카테고리 그룹명</th><th>카테고리 이름</th></tr>
+			<tr><th>연번</th><th>카테고리번호</th><th>카테고리 그룹명</th><th colspan="2">카테고리 이름</th></tr>
 		</thead>
 		<tbody>
 			<c:forEach var="cate" items="${cateList }" varStatus="status">
 			<tr>
 				<td>${status.count }</td>
 				<td>
-					<a href="${path1 }/GetCategoryDetailPlist.do?cate=${cate.cate }">${cate.cate }</a>
+					<a href="${path1 }/GetCategoryDetail.do?cate=${cate.cate }">${cate.cate }</a>
 				</td>
 				<td>${cate.categroup }</td>
 				<td>${cate.catename }</td>
@@ -48,7 +48,8 @@
 	</table>
 	<c:if test="${!empty sid }">
 	<div class="btn-group">
-		<a href="${path1 }/InsertCategory.do" class="btn btn-primary">카테고리 등록</a>
+		<a href="${path1 }/InsertCategory.do" class="button is-info">카테고리 등록</a>
+		<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
 	</div>
 	</c:if>
 </div>

@@ -77,6 +77,7 @@ public class MySQL8 {
 	
 	//cate
 	public final static String CATELIST_BY_CATECODE = "SELECT * FROM CATEGORY WHERE CATECODE LIKE '?||%'";
+	public final static String CATELIST_BY_CATECODE1 = "SELECT SUBSTR(cateCode, 1, 2) AS CAT1, CATEGROUP FROM CATEGORY WHERE cateCode LIKE '%01'";
 	public final static String CATELIST_BY_CATEGROUP = "SELECT * FROM CATEGORY WHERE CATEGROUP=?";
 	public final static String CATELIST_BY_CATENAME = "SELECT * FROM CATEGORY WHERE CATENAME=?";
 	
@@ -93,7 +94,7 @@ public class MySQL8 {
 	public final static String INSERT_POKE = "INSERT INTO POKE VALUES(?, ?, ?)";
 	public final static String DELETE_POKE = "DELETE FROM POKE WHERE pokeId=?";
 	public final static String POKE_LIST_BY_MEMBER_ID = "SELECT * FROM POKE WHERE pokedBy=?";
-	public final static String COUNT_POKE_LIST_BY_VISIT_ID = "SELECT COUNT(*) from poke group by visitId";
+	public final static String COUNT_POKE_LIST_BY_VISIT_ID = "SELECT COUNT(*) as count from poke where visitId=? group by visitId";
 	
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException{

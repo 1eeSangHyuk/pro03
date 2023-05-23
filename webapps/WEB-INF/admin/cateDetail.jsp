@@ -14,7 +14,7 @@
 <body>
 <%@ include file="../../header.jsp" %>
 <div class="content">
-<h2>카테고리 상세</h2>
+<h2 class="title">카테고리 상세</h2>
 	<table class="table">
 		<tbody>
 			<tr>

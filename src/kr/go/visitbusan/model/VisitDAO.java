@@ -15,18 +15,18 @@ public class VisitDAO {
 	private ResultSet rs = null;
 	
 	
-	public ArrayList<Visit> visitListByCateCode(String visitCateCode){
+	public ArrayList<Visit> visitListByCateCode(String cateCode){
 		ArrayList<Visit> visitList = new ArrayList<Visit>();
 		try {
 			conn = MySQL8.getConnection();
 			pstmt = conn.prepareStatement(MySQL8.VISIT_LIST_BY_CATECODE);
-			pstmt.setString(1, visitCateCode);
+			pstmt.setString(1, cateCode);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Visit visit = new Visit();
 				visit.setVisitId(rs.getString("visitId"));
 				visit.setVisitTitle(rs.getString("visitTitle"));
-				visit.setVisitCateCode(visitCateCode);
+				visit.setVisitCateCode(cateCode);
 				visit.setVisitAddr(rs.getString("visitAddr"));
 				visit.setVisitImgMain(rs.getString("visitImgMain"));
 				visit.setVisitImgSub1(rs.getString("visitImgSub1"));
@@ -42,6 +42,7 @@ public class VisitDAO {
 		return visitList;
 	}
 	
+	// visitDetail
 	public Visit visitByVisitId(String visitId){
 		Visit visit = new Visit();
 		try {

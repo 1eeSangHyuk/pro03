@@ -13,10 +13,10 @@
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div>
-	<h2>rStatus</h2>
+<div class="container is-fullhd">
+	<h2 class="title">rStatus</h2>
 	<form action="${path }/UpdateRstatus.do" method="post">
-		<table class="table" style="width: 90%">
+		<table class="table">
 			<tbody>
 				<tr>
 					<th>regId</th>
@@ -28,7 +28,10 @@
 				</tr>
 				<tr>
 					<th>visitTitle</th>
-					<td>${list.visitTitle }</td>
+					<td>
+						${list.visitTitle }
+						<input type="hidden" id="visitId" name="visitId" value="" />
+					</td>
 				<tr>
 					<th>visitAddr</th>
 					<td>${list.visitAddr }</td>
@@ -52,8 +55,8 @@
 		</table>
 	</form>
 	<div>
-		<input type="submit" value="rStatus 처리 변경">
-		<a href="javascript:history.go(-1)" class="btn btn-primary">뒤로가기</a>
+		<input type="submit" value="rStatus 처리 변경" class="button is-info">
+		<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>
