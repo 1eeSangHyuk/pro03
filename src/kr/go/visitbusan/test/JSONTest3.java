@@ -21,7 +21,6 @@ public class JSONTest3 extends HttpServlet {
 	JSONObject json1 = new JSONObject();
 	JSONArray json2 = new JSONArray();
 	
-	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");

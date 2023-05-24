@@ -14,26 +14,24 @@ public class CateDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	public ArrayList<Category> CateListbyCateCode(String cateCode){
-		ArrayList<Category> cateList = new ArrayList<Category>();
+	public Category CatebyCateCode(String cateCode){
+		Category cate = new Category();
 		try {
 			conn = MySQL8.getConnection();
-			pstmt = conn.prepareStatement(MySQL8.CATELIST_BY_CATECODE);
-			pstmt.setString(1, cateCode.substring(0, 2));
+			pstmt = conn.prepareStatement(MySQL8.CATE_BY_CATECODE);
+			pstmt.setString(1, cateCode);
 			rs = pstmt.executeQuery();
-			while (rs.next()){
-				Category cate = new Category();
-				cate.setCateCode(rs.getString("catecode"));
-				cate.setCateGroup(rs.getString("categroup"));
+			if (rs.next()){
+				cate.setCateCode(rs.getString("cateCode"));
+				cate.setCateGroup(rs.getString("cateGroup"));
 				cate.setCateName(rs.getString("cateName"));
-				cateList.add(cate);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			MySQL8.close(conn, pstmt, rs);
 		}
-		return cateList;
+		return cate;
 	}
 	
 	public ArrayList<Category> CateListbyCateCode1(String cateCode){
@@ -44,8 +42,8 @@ public class CateDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()){
 				Category cate = new Category();
-				cate.setCateCode(rs.getString("catecode"));
-				cate.setCateGroup(rs.getString("categroup"));
+				cate.setCateCode(rs.getString("cateCode"));
+				cate.setCateGroup(rs.getString("cateGroup"));
 				cateList.add(cate);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -64,8 +62,8 @@ public class CateDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()){
 				Category cate = new Category();
-				cate.setCateCode(rs.getString("catecode"));
-				cate.setCateGroup(rs.getString("categroup"));
+				cate.setCateCode(rs.getString("cateCode"));
+				cate.setCateGroup(rs.getString("cateGroup"));
 				cate.setCateName(rs.getString("cateName"));
 				cateList.add(cate);
 			}
@@ -85,8 +83,8 @@ public class CateDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()){
 				Category cate = new Category();
-				cate.setCateCode(rs.getString("catecode"));
-				cate.setCateGroup(rs.getString("categroup"));
+				cate.setCateCode(rs.getString("cateCode"));
+				cate.setCateGroup(rs.getString("cateGroup"));
 				cate.setCateName(rs.getString("cateName"));
 				cateList.add(cate);
 			}
@@ -94,6 +92,25 @@ public class CateDAO {
 			e.printStackTrace();
 		} finally {
 			MySQL8.close(conn, pstmt, rs);
+		}
+		return cateList;
+	}
+	
+	public ArrayList<Category> menuLoad(){
+		ArrayList<Category> cateList = new ArrayList<Category>();
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.CATELIST);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Category cate = new Category();
+				cate.setCateCode(rs.getString("cateCode"));
+				cate.setCateGroup(rs.getString("cateGroup"));
+				cate.setCateName(rs.getString("cateName"));
+				cateList.add(cate);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 		return cateList;
 	}

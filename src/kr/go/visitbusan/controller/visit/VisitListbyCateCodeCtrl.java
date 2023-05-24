@@ -3,6 +3,7 @@ package kr.go.visitbusan.controller.visit;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,11 +27,12 @@ public class VisitListbyCateCodeCtrl extends HttpServlet {
 		request.setAttribute("visitList", visitList);
 		
 		CateService cService = new CateService();
-		ArrayList<Category> cateList = cService.CateListbyCateCode1(cateCode);
-		request.setAttribute("cateList", cateList);
+		Category cate = cService.CatebyCateCode(cateCode);
+		request.setAttribute("cate", cate);
 		
 		if(visitList != null){
-			response.sendRedirect("");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/visit/visitListbyCateCode.jsp");
+			view.forward(request, response);
 		} else {
 			response.sendRedirect("");
 		}

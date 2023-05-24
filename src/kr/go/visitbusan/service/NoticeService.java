@@ -3,40 +3,43 @@ package kr.go.visitbusan.service;
 import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Notice;
-import kr.go.visitbusan.model.NoticeDAOMySQL;
+import kr.go.visitbusan.model.NoticeDAOInterface;
+import kr.go.visitbusan.model.NoticeDAO;
+
 
 public class NoticeService {
-	NoticeDAOMySQL ndao = new NoticeDAOMySQL();
+
+	NoticeDAOInterface dao = new NoticeDAO();
 	
-	// 공지사항 목록
-	public ArrayList<Notice> getNoticeList(int cur){
-		ArrayList<Notice> notiList = ndao.noticeListAll();
+	public ArrayList<Notice> noticeListAll(){			//공지사항 목록
+		ArrayList<Notice> notiList = dao.noticeListAll();
 		return notiList;
 	}
-	
-	// 공지사항 상세 글보기
-	public Notice getNotice(String noticeId){
-		Notice noti = ndao.noticeDetail(noticeId);
-		return noti;
+	public Notice noticeDetail(String noticeId) {		//공지사항 상세 글보기
+		Notice notice = dao.noticeDetail(noticeId);
+		return notice;
 	}
-	
-	// 공지사항 추가
-	public int noticeInsert(Notice noti){
-		int i = ndao.noticeInsert(noti);
-		return i;
+	public void noticeUpdateReadCnt(String noticeId){
+		dao.noticeUpdateReadCnt(noticeId);
 	}
-	
-	// 공지사항 수정
+	public int noticeInsert(Notice dto) {				//공지사항 추가
+		int cnt = dao.noticeInsert(dto);
+		return cnt;
+	}
+	public String noticeIdGererator(){
+		String NoticeId = dao.noticeIdGenerator();
+		return NoticeId;
+	}
 	public Notice noticeUpdate(String noticeId){
-		Notice noti = ndao.noticeUpdate(noticeId);
+		Notice noti = dao.noticeUpdate(noticeId);
 		return noti;
 	}
-	
-	// 공지사항 삭제
-	public int noticeDelete(String noticeId){
-		int i = ndao.noticeDelete(noticeId);
-		return i;
+	public int noticeUpdatePro(Notice dto) {			//공지사항 수정
+		int cnt = dao.noticeUpdatePro(dto);
+		return cnt;
 	}
-	
-	// 페이징 처리
+	public int noticeDelete(String noticeId) {			//공지사항 삭제
+		int cnt = dao.noticeDelete(noticeId);
+		return cnt;
+	}
 }

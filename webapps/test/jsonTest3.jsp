@@ -38,7 +38,7 @@
 				cache:false,
 				contentType:"application/json",
 				success:function(data){
-					//console.log(data)
+					console.log(data)
 					$("#lst").empty();
 					$.each(data, function(key, value){
 						for (var i=0;i<value.length;i++){

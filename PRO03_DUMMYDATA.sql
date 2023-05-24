@@ -111,4 +111,15 @@ INSERT INTO REGISTRATION VALUES();
 
 SELECT COUNT(*) from poke group by visitId;
 
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='admin';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='binbin';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='bklove';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='criminalcity';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='faker';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='jiny';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='jungwoo';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='narae';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='seonjeong';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='tyler';
+
 COMMIT;

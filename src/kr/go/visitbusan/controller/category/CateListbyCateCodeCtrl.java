@@ -21,12 +21,12 @@ public class CateListbyCateCodeCtrl extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
 		String cat1 = request.getParameter("cat1");
 		
 		if (cat1 != null){
 			CateService cService = new CateService();
-//			ArrayList<Category> cateList = cService.CateListbyCateCode(cateCode)
+			ArrayList<Category> cateList = cService.CateListbyCateCode(cateCode);
 			JSONObject json = new JSONObject();
 		}
 	}

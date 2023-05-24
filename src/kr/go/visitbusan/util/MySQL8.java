@@ -68,7 +68,7 @@ public class MySQL8 {
 	
 	
 	//visit
-	public final static String VISIT_LIST_BY_CATECODE = "SELECT * FROM VISIT WHERE CATECODE=?";
+	public final static String VISIT_LIST_BY_CATECODE = "SELECT * FROM VISIT WHERE visitCateCode=?";
 	public final static String VISIT_LIST_BY_VISITID = "SELECT * FROM VISIT WHERE VISITID=?";
 	public final static String ADMIN_INSERT_VISIT = "INSERT INTO VISIT VALUES(?, ?, ?, ?, ?, ?, ?, default)";
 	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitImgMain=?, visitImgSub1=?, visitImgSub2=? where visitId=?";
@@ -76,7 +76,8 @@ public class MySQL8 {
 	public final static String VISIT_ID_GENERATOR = "SELECT VISITID FROM VISIT ORDER BY VISITID DESC LIMIT 1";
 	
 	//cate
-	public final static String CATELIST_BY_CATECODE = "SELECT * FROM CATEGORY WHERE CATECODE LIKE '?||%'";
+	public final static String CATE_BY_CATECODE = "SELECT * FROM CATEGORY WHERE CATECODE=?";
+	public final static String CATELIST = "SELECT * FROM CATEGORY";
 	public final static String CATELIST_BY_CATECODE1 = "SELECT SUBSTR(cateCode, 1, 2) AS CAT1, CATEGROUP FROM CATEGORY WHERE cateCode LIKE '%01'";
 	public final static String CATELIST_BY_CATEGROUP = "SELECT * FROM CATEGORY WHERE CATEGROUP=?";
 	public final static String CATELIST_BY_CATENAME = "SELECT * FROM CATEGORY WHERE CATENAME=?";

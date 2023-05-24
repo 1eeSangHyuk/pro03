@@ -21,8 +21,8 @@ public class AES256Test {
 
 	@Test
 	public void aes256Test() {
-		String key = "%p2s5v8y/";
-		String pw = "1111";
+		String key = "%03x";
+		String pw = "1234";
 		String og_pw = "";
 		try {
 			pw = AES256.encryptAES256(pw, key);
