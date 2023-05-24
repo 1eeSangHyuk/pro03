@@ -34,7 +34,7 @@ public class CateDAO {
 		return cate;
 	}
 	
-	public ArrayList<Category> CateListbyCateCode1(String cateCode){
+	public ArrayList<Category> CateListbyCateCode1(){
 		ArrayList<Category> cateList = new ArrayList<Category>();
 		try {
 			conn = MySQL8.getConnection();
@@ -54,11 +54,12 @@ public class CateDAO {
 		return cateList;
 	}
 	
-	public ArrayList<Category> CateListByCateGroup(){
+	public ArrayList<Category> CateListByCateGroup(String cateGroup){
 		ArrayList<Category> cateList = new ArrayList<Category>();
 		try {
 			conn = MySQL8.getConnection();
 			pstmt = conn.prepareStatement(MySQL8.CATELIST_BY_CATEGROUP);
+			pstmt.setString(1, cateGroup);
 			rs = pstmt.executeQuery();
 			while (rs.next()){
 				Category cate = new Category();

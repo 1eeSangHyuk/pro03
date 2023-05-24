@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Visit;
 import kr.go.visitbusan.model.VisitDAO;
+import kr.go.visitbusan.vo.VisitVO;
 
 public class VisitService {
 	VisitDAO vdao = new VisitDAO();
@@ -36,5 +37,10 @@ public class VisitService {
 	public int deleteVisit(String visitId){
 		int i = vdao.deleteVisit(visitId);
 		return i;
+	}
+	
+	public ArrayList<VisitVO> getVisitVO(){
+		ArrayList<VisitVO> visitVOList = vdao.getVisitVO();
+		return visitVOList;
 	}
 }

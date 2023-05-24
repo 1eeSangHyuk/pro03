@@ -77,7 +77,6 @@ INSERT INTO QNA VALUES('6', '답변3', '답변3입니다.', '2', '5', DEFAULT, '
 
 
 -- Regi 계정 더미
-select * from registration;
 insert into registration values ('000001', 'tyler', '1', '2023-06-03', '여행완료');
 insert into registration values ('000002', 'tyler', '2', '2023-06-06', '여행완료');
 insert into registration values ('000003', 'tyler', '3', '2023-06-13', '여행완료');

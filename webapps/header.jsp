@@ -128,7 +128,7 @@
 		    </div>
 		    
 			<div class="buttons">
-			  <a href="${header_path }/" class="button is-light">
+			  <a href="${header_path }/MemberLogout.do" class="button is-light">
 				로그아웃
 		      </a>
 			</div>
@@ -147,7 +147,7 @@
 			contentType:"application/json",
 			cache:false,
 			success:function(obj){
-				console.log(obj);
+				//console.log(obj);
 				$(".navbar-dropdown.cate").empty();
 				$.each(obj, function(key, value){
 					for (var i=0;i<value.length;i++){

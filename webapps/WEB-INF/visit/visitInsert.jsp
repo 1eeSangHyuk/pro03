@@ -15,21 +15,23 @@
 <%@ include file="../../header.jsp" %>
 <div class="container is-fullhd">
 	<h2 class="title">visit 등록하기</h2>
-	<form action="${path }/InsertProductPro.do" method="post" enctype="multipart/form-data" onsubmit="onSubmit();">
+	<form action="${path }/" method="post" enctype="multipart/form-data" onsubmit="onSubmit();">
+	<!-- InsertProductPro.do -->
 		<table class="table">
 			<tbody>
 				<tr>
 					<th><label for="catno">카테고리 번호</label></th>
 					<td>
 						대분류 : 
-						<select id="cat1" name="cat1">
+						<select id="catGroup" name="catGroup">
 							<option value="">선택안함</option>
 							<c:forEach items="${cateList }" var="cat">
-							<option value="${cat.cateCode }" onclick="">${cat.cateGroup }</option>
+							<option value="${cat.cateGroup }" onclick="">${cat.cateGroup }</option>
 							</c:forEach>	
 						</select>
 						소분류 : 
-						<select id="catno" name="catno">
+						<select id="catName" name="catName">
+						
 						</select>
 						<input type="hidden" id="cateCode" name="cateCode" maxlength="5" required="required" value="">
 						<br>
@@ -84,34 +86,53 @@
 	function onSubmit(){
 		if($("#cateCode").value==""){
 			alert("제품코드를 발급해주세요");
-			$("#cat1").focus();
+			$("#catGroup").focus();
 		}
+		var selCatName = document.getElementById('catName');
+		$("#catCode").val(selCatName.options[selCatName.selectedIndex].value);
+		console.log(document.getElementById('catCode').value);
 	}
 	$(document).ready(function(){
-		$("#cat1").change(function(){
-			if($("#cat1").val()==""){
+		$("#catGroup").change(function(){
+			if($("#catGroup").val()==""){
 				alert("대분류 카테고리를 선택해주세요.");
-				$("#cat1").focus();
+				$("#catGroup").focus();
 				return;
 			} else {
-				var params = { cat1:$("#cat1").val() }
+				var params = { catGroup:$("#catGroup").val() }
 				$.ajax({
-					url:"${path }/CateListbyCateCode.do",
+					url:"${path }/CateListbyCateGroup.do",
 					type:"post",
 					dataType:"json",
 					encType:"UTF-8",
 					data:params,
 					success:function(result){
-						console.log(result);
-						/* $("#catno").empty();
-						var catList = result.catList;
-						for(var c in catList){
-							$("#catno").append("<option value='"+catList[c]["cateCode"]+"'>"+catList[c]["cateName"]+"</option>");
-						} */
+						//console.log(result);
+						$("#catName").empty();
+						var cateList = result.result;
+						for(var c in cateList){
+							//console.log(cateList[c]["cateCode"]);
+							$("#catName").append("<option value='"+cateList[c]["cateCode"]+"'>"+cateList[c]["cateName"]+"</option>");
+						}
 					}
-				})
+				});
 			}
-		})
+		});
+ 		$("#catName").change(function(){
+ 			var selCatName = document.getElementById('catName');
+ 			//console.log(selCatName.options[selCatName.selectedIndex].value);
+ 			catCode1 = selCatName.options[selCatName.selectedIndex].value;
+ 			//console.log(catCode1);
+ 			$("#catCode").val(catCode1);
+ 			console.log($("#catCode").val());
+ 			//$("#catCode").val(selCatName.options[selCatName.selectedIndex].value);
+ 			//console.log(document.getElementById('catCode').value);
+			/* //console.log(document.getElementById("catName").value);
+			var catCode = document.getElementById("catName").value;
+			//console.log(catCode);
+			$("#catCode").val(catCode);
+			console.log(document.getElementById("catCode").value); */
+		}); 
 	});
 	function findAddr(){
 		new daum.Postcode({

@@ -15,8 +15,13 @@ public class CateService {
 	}
 	
 	// CATECODE 01 02 03
-	public ArrayList<Category> CateListbyCateCode1(String cateCode){
-		ArrayList<Category> cateList = cdao.CateListbyCateCode1(cateCode);
+	public ArrayList<Category> CateListbyCateCode1(){
+		ArrayList<Category> cateList = cdao.CateListbyCateCode1();
+		return cateList;
+	}
+	
+	public ArrayList<Category> CateListByCateGroup(String cateGroup){
+		ArrayList<Category> cateList = cdao.CateListByCateGroup(cateGroup);
 		return cateList;
 	}
 	

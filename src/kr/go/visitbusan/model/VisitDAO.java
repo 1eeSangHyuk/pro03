@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Visit;
 import kr.go.visitbusan.util.MySQL8;
+import kr.go.visitbusan.vo.VisitVO;
 
 public class VisitDAO {
 	private Connection conn = null;
@@ -130,5 +131,26 @@ public class VisitDAO {
 			MySQL8.close(conn, pstmt);
 		}
 		return i;
+	}
+	
+	public ArrayList<VisitVO> getVisitVO(){
+		ArrayList<VisitVO> visitVOList = new ArrayList<VisitVO>();
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.VIISTVO);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				VisitVO visitVO = new VisitVO();
+				visitVO.setVisitId(rs.getString("visitId"));
+				visitVO.setCateCode(rs.getString("cateCode"));
+				visitVO.setCateName(rs.getString("cateName"));
+				visitVO.setVisitTitle(rs.getString("visitTitle"));
+				visitVO.setLikeCnt(rs.getInt("likeCnt"));
+				visitVOList.add(visitVO);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return visitVOList;
 	}
 }

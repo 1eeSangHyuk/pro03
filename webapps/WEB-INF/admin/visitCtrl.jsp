@@ -33,37 +33,40 @@ a:active {
 </head>
 <body>
 <jsp:include page="../../header.jsp" />
-<section class="section is-medium" style="background: url(https://www.visitbusan.net/upload_data/popup/info/163903982942637.jpg); background-position-y: 65%;">
-  <h1 class="title" style="color:#fff;">${cate.cateName }</h1><!--  style="color:#fff;" -->
-  <h2 class="subtitle"></h2>
-</section>
 <div class="container is-fullhd">
-	<ul class="row">
-	<c:forEach var="visit" items="${visitList }" >
-		<li class="column is-3">
-			<div class="card">
-			  <div class="card-image">
-			    <figure class="image is-16by9">
-			      <a href="">
-			      	<img src="" alt="Placeholder image">
-			      </a>
-			    </figure>
-			  </div> 			
-		      <div class="card-content">
-		        <div class="content" style="text-align:center;">
-			      <a href="">${visit.visitTitle }</a>
-		          <br><span>좋아요&nbsp;${visit.likeCnt }</span>
-		        </div>
-		      </div>
-		    </div>
-		</li>
-	</c:forEach>
-	</ul>
-	<c:if test="${empty visitList }">
-		<section class="section">
-  			<h2 class="subtitle">현재 헤당하는 여행상품이 존재하지 않습니다.</h2>
-		</section>
-	</c:if>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>연번</th>
+				<th>visitId</th>
+				<th>cateCode</th>
+				<th>cateName</th>
+				<th>visitTitle</th>
+				<th>likeCnt</th>
+				<th colspan="2">관리</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="list" items="${visitVOList }" varStatus="status">
+			<tr>
+				<td>${status.count }</td>
+				<td>${list.visitId }</td>
+				<td>${list.cateCode }</td>
+				<td>${list.cateName }</td>
+				<td>${list.visitTitle }</td>
+				<td>${list.likeCnt }</td>
+				<td><a href="${path }/" class="button is-info">수정</a></td>
+				<td><a href="${path }/" class="button is-danger">삭제</a></td>
+			</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="6">
+					<a href="${path }/VisitInsert.do" class="button is-info">추가</a>
+					<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 <jsp:include page="../../footer.jsp" />
 <script>
