@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="../../common.jsp" />
+<jsp:include page="../common.jsp" />
 <title>visitListbyCateCode</title>
 <style>
 a:link {
@@ -32,7 +32,7 @@ a:active {
 </style>
 </head>
 <body>
-<jsp:include page="../../header.jsp" />
+<jsp:include page="../header.jsp" />
 <section class="section is-medium" style="background: url(https://www.visitbusan.net/upload_data/popup/info/163903982942637.jpg); background-position-y: 65%;">
   <h1 class="title" style="color:#fff;">${cate.cateName }</h1><!--  style="color:#fff;" -->
   <h2 class="subtitle"></h2>
@@ -44,14 +44,14 @@ a:active {
 			<div class="card">
 			  <div class="card-image">
 			    <figure class="image is-16by9">
-			      <a href="">
+			      <a href="${path }/VisitDetail.do?visitId=${visit.visitId }">
 			      	<img src="" alt="Placeholder image">
 			      </a>
 			    </figure>
 			  </div> 			
 		      <div class="card-content">
 		        <div class="content" style="text-align:center;">
-			      <a href="">${visit.visitTitle }</a>
+			      <a href="${path }/VisitDetail.do?visitId=${visit.visitId }">${visit.visitTitle }</a>
 		          <br><span>좋아요&nbsp;${visit.likeCnt }</span>
 		        </div>
 		      </div>
@@ -65,7 +65,7 @@ a:active {
 		</section>
 	</c:if>
 </div>
-<jsp:include page="../../footer.jsp" />
+<jsp:include page="../footer.jsp" />
 <script>
 </script>
 </body>

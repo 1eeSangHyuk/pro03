@@ -6,6 +6,7 @@ public class VisitVO {
 	private String cateName;
 	private String visitTitle;
 	private int likeCnt;
+	private int pokeCnt;
 	
 	public String getVisitId() {
 		return visitId;
@@ -36,6 +37,12 @@ public class VisitVO {
 	}
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
+	}
+	public int getPokeCnt() {
+		return pokeCnt;
+	}
+	public void setPokeCnt(int pokeCnt) {
+		this.pokeCnt = pokeCnt;
 	}
 	
 	

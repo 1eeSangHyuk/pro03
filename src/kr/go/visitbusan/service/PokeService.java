@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Poke;
 import kr.go.visitbusan.model.PokeDAO;
+import kr.go.visitbusan.vo.PokeVO;
 
 public class PokeService {
 	PokeDAO pdao = new PokeDAO();
 	
 	// 계정별 찜한 목록 불러오기
-	public ArrayList<Poke> PokeListByMemberId(String pokedBy){
-		ArrayList<Poke> pokeList = pdao.PokeListByMemberId(pokedBy);
-		return pokeList;
+	public ArrayList<PokeVO> PokeVOListByMemberId(String pokedBy){
+		ArrayList<PokeVO> pokeVOList = pdao.PokeVOListByMemberId(pokedBy);
+		return pokeVOList;
 	}
 	
 	// 찜하기

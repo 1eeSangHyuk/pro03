@@ -5,6 +5,7 @@ public class Visit {
 	private String visitTitle;
 	private String visitCateCode;
 	private String visitAddr;
+	private String visitMapLink;
 	private String visitImgMain;
 	private String visitImgSub1;
 	private String visitImgSub2;
@@ -33,6 +34,12 @@ public class Visit {
 	}
 	public void setVisitAddr(String visitAddr) {
 		this.visitAddr = visitAddr;
+	}
+	public String getVisitMapLink() {
+		return visitMapLink;
+	}
+	public void setVisitMapLink(String visitMapLink) {
+		this.visitMapLink = visitMapLink;
 	}
 	public String getVisitImgMain() {
 		return visitImgMain;

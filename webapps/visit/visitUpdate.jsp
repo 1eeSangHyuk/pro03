@@ -8,11 +8,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../../common.jsp" %>
+<%@ include file="../common.jsp" %>
 <title>visitUpdate</title>
 </head>
 <body>
-<%@ include file="../../header.jsp" %>
+<%@ include file="../header.jsp" %>
 <div>
 	<h2>InsertVisit</h2>
 	<p>${msg }</p>
@@ -111,6 +111,6 @@
 	</script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </div>
-<%@ include file="../../footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

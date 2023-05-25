@@ -68,11 +68,11 @@ public class MySQL8 {
 	
 	
 	//visit
-	public final static String VIISTVO = "select a.visitId, b.cateCode, b.cateName, a.visitTitle, a.likeCnt from visit a, category b where a.visitCateCode = b.cateCode";
+	public final static String VISITVO = "select a.*, count(b.visitId) as pokeCnt from (select a.visitId, b.cateCode, b.cateName, a.visitTitle, a.likeCnt from visit a, category b where a.visitCateCode = b.cateCode) a left join poke b on a.visitId = b.visitId group by a.visitId";
 	public final static String VISIT_LIST_BY_CATECODE = "SELECT * FROM VISIT WHERE visitCateCode=?";
 	public final static String VISIT_LIST_BY_VISITID = "SELECT * FROM VISIT WHERE VISITID=?";
-	public final static String ADMIN_INSERT_VISIT = "INSERT INTO VISIT VALUES(?, ?, ?, ?, ?, ?, ?, default)";
-	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitImgMain=?, visitImgSub1=?, visitImgSub2=? where visitId=?";
+	public final static String ADMIN_INSERT_VISIT = "INSERT INTO VISIT VALUES(?, ?, ?, ?, ?, ?, ?, ?, default)";
+	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitMapLink=? visitImgMain=?, visitImgSub1=?, visitImgSub2=? where visitId=?";
 	public final static String ADMIN_DELETE_VISIT = "DELETE FROM VISIT WHERE visitId=?";
 	public final static String VISIT_ID_GENERATOR = "SELECT VISITID FROM VISIT ORDER BY VISITID DESC LIMIT 1";
 	
@@ -95,8 +95,8 @@ public class MySQL8 {
 	//poke
 	public final static String INSERT_POKE = "INSERT INTO POKE VALUES(?, ?, ?)";
 	public final static String DELETE_POKE = "DELETE FROM POKE WHERE pokeId=?";
-	public final static String POKE_LIST_BY_MEMBER_ID = "SELECT * FROM POKE WHERE pokedBy=?";
-	public final static String COUNT_POKE_LIST_BY_VISIT_ID = "SELECT COUNT(*) as count from poke where visitId=? group by visitId";
+	public final static String POKEVO_LIST_BY_MEMBER_ID = "select a.pokeId, a.pokedBy, a.visitId, b.visitTitle, b.visitAddr from poke a, visit b where a.visitId = b.visitId and pokedBy=?";
+	public final static String COUNT_POKE_BY_VISIT_ID = "SELECT COUNT(*) as count from poke where visitId=? group by visitId";
 	
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException{

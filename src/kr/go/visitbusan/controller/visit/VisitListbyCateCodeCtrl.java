@@ -31,7 +31,7 @@ public class VisitListbyCateCodeCtrl extends HttpServlet {
 		request.setAttribute("cate", cate);
 		
 		if(visitList != null){
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/visit/visitListbyCateCode.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("visit/visitListbyCateCode.jsp");
 			view.forward(request, response);
 		} else {
 			response.sendRedirect("");

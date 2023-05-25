@@ -34,6 +34,7 @@ a:active {
 <body>
 <jsp:include page="../../header.jsp" />
 <div class="container is-fullhd">
+	<h2 class="title">visit 관리</h2>
 	<table class="table">
 		<thead>
 			<tr>
@@ -43,6 +44,7 @@ a:active {
 				<th>cateName</th>
 				<th>visitTitle</th>
 				<th>likeCnt</th>
+				<th>pokeCnt</th>
 				<th colspan="2">관리</th>
 			</tr>
 		</thead>
@@ -55,8 +57,9 @@ a:active {
 				<td>${list.cateName }</td>
 				<td>${list.visitTitle }</td>
 				<td>${list.likeCnt }</td>
+				<td>${list.pokeCnt }</td>
 				<td><a href="${path }/" class="button is-info">수정</a></td>
-				<td><a href="${path }/" class="button is-danger">삭제</a></td>
+				<td><a href="${path }/VisitDeletePro.do?visitId=${list.visitId }" class="button is-danger">삭제</a></td>
 			</tr>
 			</c:forEach>
 			<tr>

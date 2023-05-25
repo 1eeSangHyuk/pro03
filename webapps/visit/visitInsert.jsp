@@ -8,15 +8,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../../common.jsp" %>
+<%@ include file="../common.jsp" %>
 <title>visit 등록하기</title>
 </head>
 <body>
-<%@ include file="../../header.jsp" %>
+<%@ include file="../header.jsp" %>
 <div class="container is-fullhd">
 	<h2 class="title">visit 등록하기</h2>
-	<form action="${path }/" method="post" enctype="multipart/form-data" onsubmit="onSubmit();">
-	<!-- InsertProductPro.do -->
+	<form action="${path }/VisitInsertPro.do" method="post" enctype="multipart/form-data" onsubmit="onSubmit();">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -30,12 +29,9 @@
 							</c:forEach>	
 						</select>
 						소분류 : 
-						<select id="catName" name="catName">
+						<select id="catName" name="cateCode">
 						
 						</select>
-						<input type="hidden" id="cateCode" name="cateCode" maxlength="5" required="required" value="">
-						<br>
-						<p id="msg"></p>
 					</td>
 				</tr>
 				<tr>
@@ -52,6 +48,12 @@
 						<input type="text" id="address2" name="address2" placeholder="상세주소" class="input">
 						<input type="text" id="postcode" name="postcode" placeholder="우편번호" class="input">
 						<button type="button" onclick="findAddr()" class="button is-info">우편번호 검색</button>
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						<input type="text" id="mapLink" name="mapLink" placeholder="iframe용 구글지도 주소" class="input" required="required">
 					</td>
 				</tr>
 				<tr>
@@ -85,12 +87,12 @@
 <script>
 	function onSubmit(){
 		if($("#cateCode").value==""){
-			alert("제품코드를 발급해주세요");
+			alert("상품코드를 발급해주세요");
 			$("#catGroup").focus();
 		}
-		var selCatName = document.getElementById('catName');
+		/* var selCatName = document.getElementById('catName');
 		$("#catCode").val(selCatName.options[selCatName.selectedIndex].value);
-		console.log(document.getElementById('catCode').value);
+		console.log(document.getElementById('catCode').value); */
 	}
 	$(document).ready(function(){
 		$("#catGroup").change(function(){
@@ -118,21 +120,6 @@
 				});
 			}
 		});
- 		$("#catName").change(function(){
- 			var selCatName = document.getElementById('catName');
- 			//console.log(selCatName.options[selCatName.selectedIndex].value);
- 			catCode1 = selCatName.options[selCatName.selectedIndex].value;
- 			//console.log(catCode1);
- 			$("#catCode").val(catCode1);
- 			console.log($("#catCode").val());
- 			//$("#catCode").val(selCatName.options[selCatName.selectedIndex].value);
- 			//console.log(document.getElementById('catCode').value);
-			/* //console.log(document.getElementById("catName").value);
-			var catCode = document.getElementById("catName").value;
-			//console.log(catCode);
-			$("#catCode").val(catCode);
-			console.log(document.getElementById("catCode").value); */
-		}); 
 	});
 	function findAddr(){
 		new daum.Postcode({
@@ -152,6 +139,6 @@
 	}
 	</script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<%@ include file="../../footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

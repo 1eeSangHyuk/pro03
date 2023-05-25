@@ -14,28 +14,27 @@
 <body>
 <jsp:include page="${page }/header.jsp" />
 <div class="container is-fullhd">
+	<h2 class="title">${sid }님의 찜목록</h2>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>연번</th>
 				<th>visitTitle</th>
-				<th>visitAddr</th>
-				<th colspan="2">regDate</th>
+				<th colspan="2">visitAddr</th>
 			</tr>
 		</thead>
 		<tbody>
-			<%-- <c:forEach var="" items="" varStatus="status"> --%>
+			<c:forEach var="list" items="${pokeVOList }" varStatus="status">
 			<tr>
 				<td>${status.count }</td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${list.visitTitle }</td>
+				<td>${list.visitAddr }</td>
 				<td>
-					<a href="DeletePoke">찜 목록에서 제거</a>
-					<a href="InsertRegi">신청하기</a>
+					<a href="InsertRegi" class="button is-info">신청하기</a>
+					<a href="${path }/PokeDeletePro.do?pokeId=${list.pokeId }" class="button is-danger">찜 목록에서 제거</a>
 				</td>
 			</tr>
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>

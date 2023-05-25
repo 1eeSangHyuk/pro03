@@ -1,4 +1,4 @@
-package kr.go.visitbusan.controller.admin;
+package kr.go.visitbusan.controller.visit;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class VisitInsert extends HttpServlet {
 		ArrayList<Category> cateList = cService.CateListbyCateCode1();
 		request.setAttribute("cateList", cateList);
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/visit/visitInsert.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("visit/visitInsert.jsp");
 		view.forward(request, response);
 	}
 }

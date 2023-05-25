@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import kr.go.visitbusan.dto.Poke;
 import kr.go.visitbusan.util.MySQL8;
+import kr.go.visitbusan.vo.PokeVO;
 
 public class PokeDAO {
 	private Connection conn = null;
@@ -46,33 +47,35 @@ public class PokeDAO {
 		return i;
 	}
 	
-	public ArrayList<Poke> PokeListByMemberId(String pokedBy){
-		ArrayList<Poke> pokeList = new ArrayList<Poke>();
+	public ArrayList<PokeVO> PokeVOListByMemberId(String pokedBy){
+		ArrayList<PokeVO> pokeVOList = new ArrayList<PokeVO>();
 		try {
 			conn = MySQL8.getConnection();
-			pstmt = conn.prepareStatement(MySQL8.POKE_LIST_BY_MEMBER_ID);
+			pstmt = conn.prepareStatement(MySQL8.POKEVO_LIST_BY_MEMBER_ID);
 			pstmt.setString(1, pokedBy);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				Poke poke = new Poke();
+				PokeVO poke = new PokeVO();
 				poke.setPokeId(rs.getString("pokeId"));
 				poke.setPokedBy(pokedBy);
 				poke.setVisitId(rs.getString("visitId"));
-				pokeList.add(poke);
+				poke.setVisitTitle(rs.getString("visitTitle"));
+				poke.setVisitAddr(rs.getString("visitAddr"));
+				pokeVOList.add(poke);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			MySQL8.close(conn, pstmt, rs);
 		}
-		return pokeList;
+		return pokeVOList;
 	}
 	
 	public int CountPokeListByVisitId(String visitId){
 		int i = 0;
 		try {
 			conn = MySQL8.getConnection();
-			pstmt = conn.prepareStatement(MySQL8.COUNT_POKE_LIST_BY_VISIT_ID);
+			pstmt = conn.prepareStatement(MySQL8.COUNT_POKE_BY_VISIT_ID);
 			pstmt.setString(1, visitId);
 			rs = pstmt.executeQuery();
 			if(rs.next()){

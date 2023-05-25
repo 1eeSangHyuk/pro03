@@ -20,7 +20,7 @@ public class PokeDeleteProCtrl extends HttpServlet {
 		PokeService service = new PokeService();
 		int i = service.DeletePoke(pokeId);
 		if(i>0){
-			response.sendRedirect("");
+			response.sendRedirect("/PokeListbyMemberId.do");
 		} else {
 			response.sendRedirect("");
 		}
