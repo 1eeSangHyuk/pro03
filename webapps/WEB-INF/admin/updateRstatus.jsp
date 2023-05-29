@@ -9,12 +9,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../../common.jsp" %>
-<title>Insert title here</title>
+<title>여행상태변경</title>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
 <div class="container is-fullhd">
-	<h2 class="title">rStatus</h2>
+	<h2 class="title">여행 상태 변경</h2>
 	<form action="${path }/UpdateRstatus.do" method="post">
 		<table class="table">
 			<tbody>
@@ -23,25 +23,23 @@
 					<td>
 						<span>${list.regId }</span>
 						<input type="hidden" id="regId" name="regId" value="${list.regId }">
-						<input type="hidden" id="registeredBy" name="registeredBy" value="${list.registeredBy }">
 					</td>
 				</tr>
 				<tr>
 					<th>visitTitle</th>
 					<td>
 						${list.visitTitle }
-						<input type="hidden" id="visitId" name="visitId" value="" />
 					</td>
 				<tr>
 					<th>visitAddr</th>
 					<td>${list.visitAddr }</td>
 				</tr>
 				<tr>
-					<th>regDate</th>
-					<td><input type="date" id="regDate" name="regDate"></td>
+					<th>tourDate</th>
+					<td><input type="date" id="tourDate" name="tourDate"></td>
 				</tr>
 				<tr>
-					<th><label for="rStatus">배송상태</label></th>
+					<th><label for="rStatus">여행상태</label></th>
 					<td>
 						<span>${list.rStatus }</span>
 						<select id="rStatus" name="rStatus" required>

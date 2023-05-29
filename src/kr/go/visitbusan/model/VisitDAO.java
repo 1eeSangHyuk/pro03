@@ -61,6 +61,7 @@ public class VisitDAO {
 				visit.setVisitImgMain(rs.getString("visitImgMain"));
 				visit.setVisitImgSub1(rs.getString("visitImgSub1"));
 				visit.setVisitImgSub2(rs.getString("visitImgSub2"));
+				visit.setVisitText(rs.getString("visitText"));
 				visit.setLikeCnt(rs.getInt("likeCnt"));
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -91,6 +92,7 @@ public class VisitDAO {
 			pstmt.setString(6, visit.getVisitImgMain());
 			pstmt.setString(7, visit.getVisitImgSub1());
 			pstmt.setString(8, visit.getVisitImgSub2());
+			pstmt.setString(9, visit.getVisitText());
 			i = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

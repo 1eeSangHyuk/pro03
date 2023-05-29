@@ -15,21 +15,49 @@ public class PokeDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	public int InsertPoke(Poke poke){
-		int i = 0;
+	public Poke CheckPoke(Poke poke){
+		Poke nPoke = new Poke();
 		try {
 			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.CHECK_POKE);
+			pstmt.setString(1, poke.getPokedBy());
+			pstmt.setString(2, poke.getVisitId());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				nPoke.setPokeId(rs.getString("pokeId"));
+				nPoke.setPokedBy(rs.getString("pokedBy"));
+				nPoke.setVisitId(rs.getString("visitId"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return nPoke;
+	}
+	
+	public String InsertPoke(Poke poke){
+		int pId = 0;
+		String pokeId = "";
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.POKE_ID_GENERATOR);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				pId = Integer.parseInt(rs.getString("pokeId"));
+			}
+			pId += 1;
+			pokeId = pId+"";
+		
 			pstmt = conn.prepareStatement(MySQL8.INSERT_POKE);
-			pstmt.setString(1, poke.getPokeId());
+			pstmt.setString(1, pokeId);
 			pstmt.setString(2, poke.getPokedBy());
 			pstmt.setString(3, poke.getVisitId());
-			i = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			MySQL8.close(conn, pstmt);
 		}
-		return i;
+		return pokeId;
 	}
 	
 	public int DeletePoke(String pokeId){

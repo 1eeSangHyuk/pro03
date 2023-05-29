@@ -24,18 +24,34 @@ a:hover {
 a:active {
   color : black;
 }
-.title { text-align: center; }
 .subtitle { text-align: center; }
 .row:after { content:""; display:block; clear:both; }
 .row li { float:left; }
 .content ul.row { width:960px; margin:10px auto; margin-left:auto; margin-right:auto; }
+
+.section {
+	position: relative;
+}
+.section barImg {
+	width: 100%;
+	vertical-align: middle;
+}
+.title {
+	padding: 5px 10px;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	color:#fff;
+}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
-<section class="section is-medium" style="background: url(https://www.visitbusan.net/upload_data/popup/info/163903982942637.jpg); background-position-y: 65%;">
-  <h1 class="title" style="color:#fff;">${cate.cateName }</h1><!--  style="color:#fff;" -->
-  <h2 class="subtitle"></h2>
+<section class="section">
+  <h1 class="title" style="color:#fff;">${cate.cateName }</h1>
+  <img src="${path }/visit/img/bar.jpg" alt="bg" class="barImg">
 </section>
 <div class="container is-fullhd">
 	<ul class="row">
@@ -44,14 +60,14 @@ a:active {
 			<div class="card">
 			  <div class="card-image">
 			    <figure class="image is-16by9">
-			      <a href="${path }/VisitDetail.do?visitId=${visit.visitId }">
-			      	<img src="" alt="Placeholder image">
+			      <a href="${path }/VisitDetail.do?visitId=${visit.visitId }&sid=${sid }">
+			      	<img src="${path }/visit/${visit.visitImgMain }" alt="Placeholder image">
 			      </a>
 			    </figure>
 			  </div> 			
 		      <div class="card-content">
 		        <div class="content" style="text-align:center;">
-			      <a href="${path }/VisitDetail.do?visitId=${visit.visitId }">${visit.visitTitle }</a>
+			      <a href="${path }/VisitDetail.do?visitId=${visit.visitId }&sid=${sid }">${visit.visitTitle }</a>
 		          <br><span>좋아요&nbsp;${visit.likeCnt }</span>
 		        </div>
 		      </div>

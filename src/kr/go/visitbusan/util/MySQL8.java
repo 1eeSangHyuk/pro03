@@ -71,8 +71,8 @@ public class MySQL8 {
 	public final static String VISITVO = "select a.*, count(b.visitId) as pokeCnt from (select a.visitId, b.cateCode, b.cateName, a.visitTitle, a.likeCnt from visit a, category b where a.visitCateCode = b.cateCode) a left join poke b on a.visitId = b.visitId group by a.visitId";
 	public final static String VISIT_LIST_BY_CATECODE = "SELECT * FROM VISIT WHERE visitCateCode=?";
 	public final static String VISIT_LIST_BY_VISITID = "SELECT * FROM VISIT WHERE VISITID=?";
-	public final static String ADMIN_INSERT_VISIT = "INSERT INTO VISIT VALUES(?, ?, ?, ?, ?, ?, ?, ?, default)";
-	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitMapLink=? visitImgMain=?, visitImgSub1=?, visitImgSub2=? where visitId=?";
+	public final static String ADMIN_INSERT_VISIT = "INSERT INTO VISIT VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, default)";
+	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitMapLink=? visitImgMain=?, visitImgSub1=?, visitImgSub2=?, visitText=? where visitId=?";
 	public final static String ADMIN_DELETE_VISIT = "DELETE FROM VISIT WHERE visitId=?";
 	public final static String VISIT_ID_GENERATOR = "SELECT VISITID FROM VISIT ORDER BY VISITID DESC LIMIT 1";
 	
@@ -85,16 +85,20 @@ public class MySQL8 {
 	
 	//regi
 	public final static String REGI_LIST_BY_MEMBER_ID = "select * from registration where registeredBy=?";
-	public final static String INSERT_REGI = "INSERT INTO REGISTRATION VALUES(?, ?, ?, default, default);";
-	public final static String UPDATE_REGI = "UPDATE REGISTRATION SET visitId=?, regDate=? where regId=?";
+	public final static String REGI_VO_LIST_BY_MEMBER_ID = "select b.regId, b.visitId, b.registeredBy, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where b.registeredBy=? and a.visitId = b.visitId";
+	public final static String REGI_VO_BY_REG_ID = "select b.regId, b.visitId, b.registeredBy, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where b.regId=? and a.visitId = b.visitId";
+	public final static String INSERT_REGI = "INSERT INTO REGISTRATION VALUES(?, ?, ?, default, ?, default);";
+	public final static String UPDATE_REGI = "UPDATE REGISTRATION SET tourDate=? where regId=?";
 	public final static String DELETE_REGI = "DELETE FROM REGISTRATION WHERE regId=?";
 	public final static String ADMIN_REGI_LIST_ALL = "select * from registration";
 	public final static String ADMIN_UPDATE_RSTATUS = "UPDATE REGISTRATION SET rStatus=? where regId=?";
 	public final static String REGI_ID_GENERATOR = "SELECT REGID FROM REGISTRATION ORDER BY REGID DESC LIMIT 1";
 		
 	//poke
+	public final static String POKE_ID_GENERATOR = "SELECT POKEID FROM POKE ORDER BY POKEID DESC LIMIT 1";
 	public final static String INSERT_POKE = "INSERT INTO POKE VALUES(?, ?, ?)";
 	public final static String DELETE_POKE = "DELETE FROM POKE WHERE pokeId=?";
+	public final static String CHECK_POKE = "SELECT * FROM POKE WHERE POKEDBY=? AND VISITID=?";
 	public final static String POKEVO_LIST_BY_MEMBER_ID = "select a.pokeId, a.pokedBy, a.visitId, b.visitTitle, b.visitAddr from poke a, visit b where a.visitId = b.visitId and pokedBy=?";
 	public final static String COUNT_POKE_BY_VISIT_ID = "SELECT COUNT(*) as count from poke where visitId=? group by visitId";
 	

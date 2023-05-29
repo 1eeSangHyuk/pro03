@@ -16,3 +16,4 @@ update visit set visitMapLink='' where visitId='';
 select a.pokeId, a.pokedBy, a.visitId, b.visitTitle, b.visitAddr from poke a, visit b where a.visitId = b.visitId and pokedBy='tyler';
 
 commit;
+

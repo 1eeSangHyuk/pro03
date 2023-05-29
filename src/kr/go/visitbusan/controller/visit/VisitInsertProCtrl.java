@@ -51,6 +51,7 @@ public class VisitInsertProCtrl extends HttpServlet {
 		if(sub2!=null){
 			visit.setVisitImgSub2("."+savePath.substring(6, savePath.length())+"/sub2/"+sub2);
 		}
+		visit.setVisitText(multi.getParameter("visitText"));
 		
 		VisitService service = new VisitService();
 		int i = service.insertVisit(visit);

@@ -73,7 +73,7 @@
 	    <c:if test="${!empty sid && !sid.equals('admin')}">
 		    <div class="navbar-item has-dropdown is-hoverable">
 		      <a class="navbar-link">
-			         내 정보
+			      ${sid }님의 정보
 		      </a>
 		        
 			  <div class="navbar-dropdown">
@@ -83,7 +83,7 @@
 		        <a href="${header_path }/PokeListbyMemberId.do?sid=${sid }" class="navbar-item">
 				    찜목록보기
 		        </a>
-		        <a href="${header_path }/" class="navbar-item">
+		        <a href="${header_path }/RegiListbyMemberId.do?sid=${sid }" class="navbar-item">
 				    여행목록
 		        </a>
 		        <a href="${header_path }/" class="navbar-item">

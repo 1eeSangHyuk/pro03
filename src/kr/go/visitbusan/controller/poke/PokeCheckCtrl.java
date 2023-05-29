@@ -14,8 +14,8 @@ import org.json.JSONObject;
 import kr.go.visitbusan.dto.Poke;
 import kr.go.visitbusan.service.PokeService;
 
-@WebServlet("/PokeInsertPro.do")
-public class PokeInsertProCtrl extends HttpServlet {
+@WebServlet("/PokeCheck.do")
+public class PokeCheckCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	JSONObject json = new JSONObject();
@@ -24,10 +24,10 @@ public class PokeInsertProCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
-		pokeInsert(request, response);
+		pokeCheck(request, response);
 	}
 	
-	public void pokeInsert(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void pokeCheck(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String pokedBy = request.getParameter("pokedBy");
 		String visitId = request.getParameter("visitId");
 		Poke poke = new Poke();
@@ -35,14 +35,14 @@ public class PokeInsertProCtrl extends HttpServlet {
 		poke.setVisitId(visitId);
 		
 		PokeService service = new PokeService();
-		String pokeId = service.InsertPoke(poke);
+		Poke nPoke = service.CheckPoke(poke);
 		
-		if (pokeId != null){
-			request.setAttribute("pokeId", pokeId);
+		if (nPoke.getPokeId() != null){
 			json.put("res", "1");
 			PrintWriter out = response.getWriter();
 			out.println(json.toString());
 		} else {
+			request.setAttribute("pokeId", nPoke.getPokeId());
 			json.put("res", "0");
 			PrintWriter out = response.getWriter();
 			out.println(json.toString());

@@ -15,10 +15,15 @@ public class PokeService {
 		return pokeVOList;
 	}
 	
+	public Poke CheckPoke(Poke poke){
+		Poke nPoke = pdao.CheckPoke(poke);
+		return nPoke;
+	}
+	
 	// 찜하기
-	public int InsertPoke(Poke poke){
-		int i = pdao.InsertPoke(poke);
-		return i;
+	public String InsertPoke(Poke poke){
+		String visitId = pdao.InsertPoke(poke);
+		return visitId;
 	}
 	
 	// 찜한 visit 삭제

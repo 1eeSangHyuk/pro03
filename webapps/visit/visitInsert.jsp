@@ -75,6 +75,12 @@
 					</td>
 				</tr>
 				<tr>
+					<th>내용</th>
+					<td>
+						<textarea type="textarea is-large" rows="10" placeholder="내용" id="visitText" name="visitText" class="textarea"></textarea>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2">
 						<input type="submit" value="visit 등록" class="button is-info">
 						<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>				

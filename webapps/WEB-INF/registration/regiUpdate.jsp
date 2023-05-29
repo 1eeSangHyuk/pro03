@@ -8,50 +8,45 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="${path }/common.jsp" />
-<title>Insert title here</title>
+<jsp:include page="${page }/common.jsp" />
+<title>여행일자 수정</title>
 </head>
 <body>
-<jsp:include page="${path }/header.jsp" />
+<jsp:include page="${page }/header.jsp" />
 <div class="container is-fullhd">
-	<!--  -->
-	<section class="section is-medium" style="text-align:center;">
-	  <h1 class="title" style="margin-bottom: 40px; ">visitTitle</h1>
-	</section>
-	<!--  -->
-	<section class="section is-medium" style="background: url(https://www.visitbusan.net/upload_data/popup/info/163903982942637.jpg); background-position-y: 65%;">
-	</section>
-	<!--  -->
-<!-- 	<div class="tabs is-centered">
-	  <ul>
-	    <li class="is-active"><a>상세정보</a></li>
-	    <li><a>지도</a></li>
-	    <li><a>리뷰</a></li>
-	  </ul>
-	</div> -->
-	<h2>regInsert</h2>
-	<form action="" method="post">
-		<table class="table">
+	<h2 class="title">여행일자 수정</h2>
+	<form action="${path }/RegiUpdatePro.do" method="post">
+		<table class="table" style="width: 90%">
 			<tbody>
 				<tr>
 					<th>visitTitle</th>
 					<td>
-						${list.visitTitle }
-						<input type="hidden" id="registeredBy" name="registeredBy" value="${uid }">
-						<input type="hidden" id="visitId" name="visitId" value="">
+						${visit.visitTitle }
+						<input type="hidden" id="regId" name="regId" value="${regId }">
+						<input type="hidden" id="sid" name="sid" value="${sid }">
 					</td>
 				<tr>
-					<th>regDate</th>
-					<td><input type="date" id="regDate" name="regDate"></td>
+					<th>tourDate</th>
+					<td><input type="date" id="tourDate" name="tourDate"></td>
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<input type="submit" value="여행일자 수정하기" class="button is-info">
+			<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
+		</div>
 	</form>
-	<div>
-		<input type="submit" value="visit 수정하기">
-		<a href="javascript:history.go(-1)" class="btn btn-primary">뒤로가기</a>
-	</div>
 </div>
-<jsp:include page="${path }/footer.jsp" />
+<jsp:include page="${page }/footer.jsp" />
+<script>
+	$(document).ready(function(){
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = ('0' + (date.getMonth() + 1)).slice(-2);
+		var day = ('0' + date.getDate()).slice(-2);
+		var today = year + '-' + month  + '-' + day;
+		$("#tourDate").attr('min', today);
+	});
+</script>
 </body>
 </html>
