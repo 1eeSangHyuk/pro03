@@ -91,7 +91,8 @@ public class MySQL8 {
 	public final static String UPDATE_REGI = "UPDATE REGISTRATION SET tourDate=? where regId=?";
 	public final static String DELETE_REGI = "DELETE FROM REGISTRATION WHERE regId=?";
 	public final static String ADMIN_REGI_LIST_ALL = "select * from registration";
-	public final static String ADMIN_UPDATE_RSTATUS = "UPDATE REGISTRATION SET rStatus=? where regId=?";
+	public final static String ADMIN_REGI_VO_LIST_ALL = "select b.regId, b.visitId, b.registeredBy, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where a.visitId = b.visitId";
+	public final static String ADMIN_UPDATE_RSTATUS = "UPDATE REGISTRATION SET tourDate=?, rStatus=? where regId=?";
 	public final static String REGI_ID_GENERATOR = "SELECT REGID FROM REGISTRATION ORDER BY REGID DESC LIMIT 1";
 		
 	//poke

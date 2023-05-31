@@ -121,7 +121,7 @@
 		        <a href="${header_path }/VisitCtrl.do" class="navbar-item">
 				  visit관리
 		        </a>
-		        <a href="${header_path }/" class="navbar-item">
+		        <a href="${header_path }/RegiListAll.do" class="navbar-item">
 				  regi관리
 		        </a>
 		      </div>

@@ -2,10 +2,7 @@ select * from poke;
 select * from member;
 select * from visit;
 
-INSERT INTO POKE VALUES('4', 'binbin', '1');
-INSERT INTO POKE VALUES('5', 'bklove', '1');
-INSERT INTO POKE VALUES('6', 'jiny', '2');
-INSERT INTO POKE VALUES('7', 'tyler', '2');
+
 
 update visit set likeCnt=10 where visitId='3';
 

@@ -9,11 +9,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../../common.jsp" %>
-<title>Insert title here</title>
+<title>RegiCtrl</title>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
 <div class="container is-fullhd">
+	<h2 class="title">회원 전체 RegiCtrl</h2>
 	<table class="table">
 		<thead>
 			<tr>
@@ -22,27 +23,37 @@
 				<th>visitTitle</th>
 				<th>visitAddr</th>
 				<th>regDate</th>
+				<th>tourDate</th>
 				<th colspan="2">rStatus</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="" items="" varStatus="status">
+			<c:if test="${empty regiVOList }">
+				<h3 title="subtitle">아직 회원들에 의한 여행상품신청이 없습니다.</h3>
+			</c:if>
+			<c:if test="${!empty regiVOList }">
+			<c:forEach var="list" items="${regiVOList }" varStatus="status">
 			<tr>
 				<td>${status.count }</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${list.registeredBy }</td>
+				<td>${list.visitTitle }</td>
+				<td>${list.visitAddr }</td>
+				<td>${list.regDate }</td>
+				<td>${list.tourDate }</td>
+				<td>${list.rStatus }</td>
 				<td>
-					<a href="" class="button is-info">상태 변경</a>
+					<a href="${path }/RegiUpdateRstatus.do?regId=${list.regId }" class="button is-info">status 변경</a>
+					<a href="${path }/RegiDeletePro.do?regId=${list.regId }" class="button is-danger">신청 삭제</a>
 				</td>
 			</tr>
 			</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
-</div>
-<div>
-	<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
+	<div>
+		<a href="${path }/" class="button is-info">홈으로</a>
+		<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
+	</div>
 </div>
 <%@ include file="../../footer.jsp" %>
 </body>

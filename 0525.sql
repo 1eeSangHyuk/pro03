@@ -1,3 +1,6 @@
+show databases;
+use busan;
+
 select a.visitId, b.cateCode, b.cateName, a.visitTitle, a.likeCnt from visit a, category b where a.visitCateCode = b.cateCode;
 
 select * from visit;
@@ -29,6 +32,8 @@ select a.*, count(b.visitId) as pokeCnt from (select * from visit where visitId=
 
 delete from visit where visitId='8';
 
+select * from registration;
+
+select b.regId, b.visitId, b.registeredBy, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where a.visitId = b.visitId;
+
 commit;
-
-

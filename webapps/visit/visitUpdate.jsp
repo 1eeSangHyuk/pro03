@@ -14,7 +14,7 @@
 <body>
 <%@ include file="../header.jsp" %>
 <div>
-	<h2>InsertVisit</h2>
+	<h2>VisitUpdate</h2>
 	<p>${msg }</p>
 	<form action="${path }/InsertVisitPro.do" method="post" enctype="multipart/form-data" onsubmit="onSubmit();">
 		<table class="table">

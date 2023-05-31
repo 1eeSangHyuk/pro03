@@ -15,7 +15,7 @@
 <%@ include file="../../header.jsp" %>
 <div class="container is-fullhd">
 	<h2 class="title">여행 상태 변경</h2>
-	<form action="${path }/UpdateRstatus.do" method="post">
+	<form action="${path }/RegiUpdateRstatusPro.do" method="post">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -35,27 +35,31 @@
 					<td>${list.visitAddr }</td>
 				</tr>
 				<tr>
+					<th>신청일자</th>
+					<td>${list.regDate }</td>
+				</tr>
+				<tr>
 					<th>tourDate</th>
-					<td><input type="date" id="tourDate" name="tourDate"></td>
+					<td><input type="date" id="tourDate" name="tourDate" value="${list.tourDate }"></td>
 				</tr>
 				<tr>
 					<th><label for="rStatus">여행상태</label></th>
 					<td>
 						<span>${list.rStatus }</span>
 						<select id="rStatus" name="rStatus" required>
-							<option value="여행 신청">여행 신청</option>
-							<option value="여행 승인">여행 승인</option>
-							<option value="여행 완료">여행 완료</option>
+							<option value="여행신청">여행 신청</option>
+							<option value="여행승인">여행 승인</option>
+							<option value="여행완료">여행 완료</option>
 						</select>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<input type="submit" value="rStatus 처리 변경" class="button is-info">
+			<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
+		</div>
 	</form>
-	<div>
-		<input type="submit" value="rStatus 처리 변경" class="button is-info">
-		<a href="javascript:history.go(-1)" class="button is-danger">뒤로가기</a>
-	</div>
 </div>
 <%@ include file="../../footer.jsp" %>
 </body>

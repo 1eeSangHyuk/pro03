@@ -48,13 +48,15 @@ INSERT INTO CATEGORY VALUES('0304', '축제', '겨울');
 
 
 -- VISIT
-INSERT INTO VISIT VALUES('1', '세계적인 관광도시 부산 5대 매력', '0101', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
-INSERT INTO VISIT VALUES('2', '빠르게 만나는 부산 봄 여행 추천 10', '0101', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
-INSERT INTO VISIT VALUES('3', '일러스트로 만나는 \'뉴진스 코드 in 부산\' 추천여행', '0101', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
-INSERT INTO VISIT VALUES('4', '부산 아이와 가볼만한 곳(겨울편)', '0101', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
-INSERT INTO VISIT VALUES('5', '2022 드라마 촬영지 순례(ft.재벌집 막내아들)', '0101', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
-INSERT INTO VISIT VALUES('6', '속 시원한 해장 별미 3선', '0102', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
-INSERT INTO VISIT VALUES('7', '오롯이 즐기는 여유, 부산 한옥카페 3선', '0102', 'SAMPLE주소', 'change1', 'change1', 'change1', default);
+INSERT INTO VISIT VALUES('1', '세계적인 관광도시 부산 5대 매력', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('2', '빠르게 만나는 부산 봄 여행 추천 10', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('3', '일러스트로 만나는 \'뉴진스 코드 in 부산\' 추천여행', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('4', '부산 아이와 가볼만한 곳(겨울편)', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('5', '2022 드라마 촬영지 순례(ft.재벌집 막내아들)', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('6', '속 시원한 해장 별미 3선', '0102', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('7', '오롯이 즐기는 여유, 부산 한옥카페 3선', '0102', 'SAMPLE주소', null, null, null, default);
+
+update visit set likeCnt=10 where visitId='3';
 
 -- select * from visit;
 
@@ -65,6 +67,10 @@ INSERT INTO VISIT VALUES('7', '오롯이 즐기는 여유, 부산 한옥카페 3
 INSERT INTO POKE VALUES('1', 'tyler', '1');
 INSERT INTO POKE VALUES('2', 'faker', '2');
 INSERT INTO POKE VALUES('3', 'narae', '3');
+INSERT INTO POKE VALUES('4', 'binbin', '1');
+INSERT INTO POKE VALUES('5', 'bklove', '1');
+INSERT INTO POKE VALUES('6', 'jiny', '2');
+INSERT INTO POKE VALUES('7', 'tyler', '2');
 
 
 -- QNA
