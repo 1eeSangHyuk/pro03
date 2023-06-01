@@ -1,10 +1,29 @@
 show databases;
 use busan;
 
-alter table visit modify column visitMapLink varchar(500);
+show tables;
 
-alter table visit add column visitText text;
+-- cate
+INSERT INTO CATEGORY VALUES('0101', '여행', '테마여행');
+INSERT INTO CATEGORY VALUES('0102', '여행', '미식여행');
+INSERT INTO CATEGORY VALUES('0201', '공연', '야구');
+INSERT INTO CATEGORY VALUES('0202', '공연', '국제영화제');
+INSERT INTO CATEGORY VALUES('0301', '축제', '봄');
+INSERT INTO CATEGORY VALUES('0302', '축제', '여름');
+INSERT INTO CATEGORY VALUES('0303', '축제', '가을');
+INSERT INTO CATEGORY VALUES('0304', '축제', '겨울');
 
+
+-- VISIT
+INSERT INTO VISIT VALUES('1', '세계적인 관광도시 부산 5대 매력', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('2', '빠르게 만나는 부산 봄 여행 추천 10', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('3', '일러스트로 만나는 \'뉴진스 코드 in 부산\' 추천여행', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('4', '부산 아이와 가볼만한 곳(겨울편)', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('5', '2022 드라마 촬영지 순례(ft.재벌집 막내아들)', '0101', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('6', '속 시원한 해장 별미 3선', '0102', 'SAMPLE주소', null, null, null, default);
+INSERT INTO VISIT VALUES('7', '오롯이 즐기는 여유, 부산 한옥카페 3선', '0102', 'SAMPLE주소', null, null, null, default);
+
+update visit set likeCnt=10 where visitId='3';
 update visit set visitMapLink='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26095.334375386585!2d129.14287459879404!3d35.158695740425635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35688d5c0efe075f%3A0x9963b1d5c163ac98!2z7ZW07Jq064yA7ZW07IiY7JqV7J6l!5e0!3m2!1sko!2skr!4v1685305527863!5m2!1sko!2skr' where visitId='1';
 update visit set visitMapLink='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.919198132895!2d129.08035557717176!3d35.15863585850239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ecbceaf8917b%3A0xb679658efae6d19a!2z7Zmp66C57IKwIOyghOunneyJvO2EsA!5e0!3m2!1sko!2skr!4v1685305630681!5m2!1sko!2skr' where visitId='2';
 update visit set visitMapLink='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3260.403146006715!2d129.21279147717257!3d35.19642585645115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35688df2c51276f1%3A0xebe28acdea1ee316!2z66Gv642w7JuU65OcIOyWtOuTnOuypOyymCDrtoDsgrA!5e0!3m2!1sko!2skr!4v1685305771017!5m2!1sko!2skr' where visitId='3';
@@ -13,8 +32,6 @@ update visit set visitMapLink='https://www.google.com/maps/embed?pb=!1m18!1m12!1
 update visit set visitMapLink='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d969.3626429185473!2d128.98511576682714!3d35.19315838004338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568c01f97250959%3A0xcb7d7eb03492e9c5!2z7IK865297J6s7LKp6rGw66as6rO17JiB7KO87LCo7J6l!5e0!3m2!1sko!2skr!4v1685305975703!5m2!1sko!2skr' where visitId='6';
 update visit set visitMapLink='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.2186165691924!2d129.19400537717203!3d35.176103357554524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35688db5e4844e2f%3A0x412584b792cffa95!2z7IiY7JuU6rK97ZmU!5e0!3m2!1sko!2skr!4v1685306023690!5m2!1sko!2skr' where visitId='7';
 
-update visit set visitMapLink='' where visitId='';
-
 update visit set visitImgMain='./img/main/1_main.jpg' where visitId='1';
 update visit set visitImgMain='./img/main/2_main.jpg' where visitId='2';
 update visit set visitImgMain='./img/main/3_main.jpg' where visitId='3';
@@ -22,7 +39,6 @@ update visit set visitImgMain='./img/main/4_main.jpg' where visitId='4';
 update visit set visitImgMain='./img/main/5_main.jpg' where visitId='5';
 update visit set visitImgMain='./img/main/6_main.jpg' where visitId='6';
 update visit set visitImgMain='./img/main/7_main.jpg' where visitId='7';
-update visit set visitImgMain='./img/main/' where visitId='';
 
 update visit set visitImgSub1='./img/sub1/1_sub1.jpg' where visitId='1';
 update visit set visitImgSub1='./img/sub1/2_sub1.jpg' where visitId='2';
@@ -30,15 +46,6 @@ update visit set visitImgSub1='./img/sub1/3_sub1.jpg' where visitId='3';
 update visit set visitImgSub1='./img/sub1/4_sub1.jpg' where visitId='4';
 update visit set visitImgSub1='./img/sub1/5_sub1.jpg' where visitId='5';
 
-
-update visit set visitImgSub1='./img/sub1/' where visitId='';
-
-update visit set visitImgMain='./img/sub2/' where visitId='';
-
-update visit set visitImgMain='./img/sub2/' where visitId='';
-
-
-update visit set visitText='' where visitId='';
 update visit set visitText='가을이 깊어갑니다. 찬바람이 불기 시작하는 요즘 같은 때 생각나는 음식이 있죠? 바로 뜨끈뜨끈한 국물에 시원한 맛이 일품인 해장국이죠. 전국 어느 도시나 그 도시를 대표하는 해장 별미가 하나씩은 있죠? 부산에도 해장 별미로 유명한 음식들이 있답니다. 자, 오늘은 시원하고, 담백한 부산 해장 별미를 찾아 떠나볼까요?
 
 부산의 해장국, 재첩국
@@ -60,21 +67,45 @@ update visit set visitText='가을이 깊어갑니다. 찬바람이 불기 시�
 도심과 가장 가까운 해변이자 골목 곳곳 이색공간이 많은 광안리에도 유명한 해장국 맛집이 많다. 새하얀 백사장과 푸른 바다, 구경만 해도 즐거운 다양한 가게들. 광안리를 맘껏 즐긴 후에 콩나물 해장국으로 마무리하는 푸근한 하루도 한 번쯤 계획해 보자.
 찬바람이 쌀쌀하게 불어오는 계절, 속 시원한 다양한 해장 별미로 부산 여행의 맛을 더해 보자.' where visitId='6';
 
+-- POKE
+INSERT INTO POKE VALUES('1', 'tyler', '1');
+INSERT INTO POKE VALUES('2', 'faker', '2');
+INSERT INTO POKE VALUES('3', 'narae', '3');
+INSERT INTO POKE VALUES('4', 'binbin', '1');
+INSERT INTO POKE VALUES('5', 'bklove', '1');
+INSERT INTO POKE VALUES('6', 'jiny', '2');
+INSERT INTO POKE VALUES('7', 'tyler', '2');
 
-select * from category;
-select * from member;
-select * from notice;
-select * from poke;
-select * from qna;
-select * from registration;
-select * from review;
-select * from visit;
 
-alter table registration add column tourDate date;
+-- Regi 계정 더미
+insert into registration values ('000001', 'tyler', '1', '2023-06-03', '여행완료');
+insert into registration values ('000002', 'tyler', '2', '2023-06-06', '여행완료');
+insert into registration values ('000003', 'tyler', '3', '2023-06-13', '여행완료');
+insert into registration values ('000004', 'faker', '1', '2023-06-16', '여행완료');
+insert into registration values ('000005', 'faker', '2', '2023-06-30', '여행완료');
+insert into registration values ('000006', 'faker', '3', '2023-07-03', '여행완료');
+insert into registration values ('000007', 'narae', '1', '2023-08-03', '여행완료');
+insert into registration values ('000008', 'narae', '2', '2023-09-03', '여행완료');
+insert into registration values ('000009', 'narae', '3', '2023-10-03', '여행완료');
+insert into registration values ('000010', 'seonjeong', '1', '2023-06-23', '여행완료');
+insert into registration values ('000011', 'seonjeong', '2', '2023-06-09', '여행완료');
+insert into registration values ('000012', 'seonjeong', '3', '2023-06-28', '여행완료');
+insert into registration values ('000013', 'binbin', '1', '2023-06-03', '여행완료');
+insert into registration values ('000014', 'binbin', '1', '2023-06-03', '여행완료');
+insert into registration values ('000015', 'binbin', '1', '2023-06-03', '여행완료');
 
-select b.regId, b.visitId, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where b.registeredBy='binbin' and a.visitId = b.visitId;
 
--- registration - regDate 다음 tourDate
--- visit - visitImgSub2 다음 visitText
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='admin';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='binbin';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='bklove';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='criminalcity';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='faker';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='jiny';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='jungwoo';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='narae';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='seonjeong';
+update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='tyler';
 
-commit;
+
+
+COMMIT;
