@@ -1,3 +1,6 @@
+show databases;
+use busan;
+
 alter table visit modify column visitMapLink varchar(500);
 
 alter table visit add column visitText text;
@@ -70,5 +73,8 @@ select * from visit;
 alter table registration add column tourDate date;
 
 select b.regId, b.visitId, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where b.registeredBy='binbin' and a.visitId = b.visitId;
+
+-- registration - regDate 다음 tourDate
+-- visit - visitImgSub2 다음 visitText
 
 commit;

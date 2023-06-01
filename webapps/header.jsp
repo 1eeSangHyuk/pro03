@@ -137,7 +137,7 @@
     </div>
   </div>
 </nav>
-<script>
+<!-- <script>
 	$(document).ready(function(){
 		$.ajax({
 			url:"${header_path }/MenuLoad.do",
@@ -161,7 +161,7 @@
 					}
 				});
 			}
-		})
-	})
-</script>
+		});
+	});
+</script> -->
 </header>
