@@ -8,13 +8,6 @@
 <meta charset="UTF-8">
 <%@ include file="../common.jsp" %>
 <title>부산관광포탈 비짓부산</title>
-<style>
-	#ftBox1 {box-shadow: unset; padding: 1.5rem 1.5rem 1.5rem; background-color: #fff;}
-	#ftBox2 {box-shadow: unset; padding: 1.5rem 1.5rem 3rem; background-color: #2c323a;}
-	.cat {padding: 0em 0em 1.0em 0em; }
-	/* .footer {color:#fff;} */
-	#ft2 {background-color: #2c323a;}
-</style>
 </head>
 <body>
 <%@ include file="../header.jsp" %>

@@ -36,21 +36,12 @@ a:active {
 	width: 100%;
 	vertical-align: middle;
 }
-.title {
-	padding: 5px 10px;
-	text-align: center;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate( -50%, -50% );
-	color:#fff;
-}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
 <section class="section">
-  <h1 class="title" style="color:#fff;">${cate.cateName }</h1>
+  <h1 class="title" style="padding: 5px 10px; ntext-align: center; position: absolute; top: 50%; left: 50%; transform: translate( -50%, -50% ); color:#fff;">${cate.cateName }</h1>
   <img src="${path }/visit/img/bar.jpg" alt="bg" class="barImg">
 </section>
 <div class="container is-fullhd">

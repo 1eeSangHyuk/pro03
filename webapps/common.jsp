@@ -36,3 +36,17 @@
   
 <!-- bulma -->
 <link rel="stylesheet" href="${common_path }/source/bulma.css">
+<style>
+	#ftBox1, #ftBox2 {box-shadow: unset; padding: 1.5rem; background-color: #ffffff00;}
+	/* #ftBox2 {box-shadow: unset; padding: 1.5rem; background-color: #2c323a;} */
+	#ft1 {padding: 3rem 1.5rem 3rem; background: url("${path }/img/index/footer_up.png"); }
+	#ft1 .title {color: #fff;}
+	#ft1 a {color:#fff;}
+	#ft2 {padding: 3rem 1.5rem 3rem; background-color: #2c323a;}
+	#ft2 .title, p {color: #fff;}
+	#ft2img1 {padding-top: 20.76px;}
+	#ft2img2 {padding-top: 34.53px;}
+	#ft2img3 {padding-top: 19.83px;}
+	#ft2img4 {padding-top: 39.54px;}
+	.tile > a:hover {color:#fff;}
+</style>
