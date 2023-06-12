@@ -38,8 +38,7 @@
 <link rel="stylesheet" href="${common_path }/source/bulma.css">
 <style>
 	#ftBox1, #ftBox2 {box-shadow: unset; padding: 1.5rem; background-color: #ffffff00;}
-	/* #ftBox2 {box-shadow: unset; padding: 1.5rem; background-color: #2c323a;} */
-	#ft1 {padding: 3rem 1.5rem 3rem; background: url("${path }/img/index/footer_up.png"); }
+	#ft1 {padding: 3rem 1.5rem 3rem; background: url("${common_path }/img/index/footer_up.png"); }
 	#ft1 .title {color: #fff;}
 	#ft1 a {color:#fff;}
 	#ft2 {padding: 3rem 1.5rem 3rem; background-color: #2c323a;}

@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="../common.jsp" %>
+<jsp:include page="../common.jsp" />
 <title>부산관광포탈 비짓부산</title>
 </head>
 <body>
-<%@ include file="../header.jsp" %>
-<%@ include file="../footer.jsp" %>
+<jsp:include page="../header.jsp" />
+<jsp:include page="../footer.jsp" />
 	<script>
 	$(document).ready(function(){
 		$.ajax({
@@ -28,14 +28,14 @@
 				$.each(obj, function(key, value){
 					for (var i=0;i<value.length;i++){
 						if(value[i].cateGroup == "여행"){
-							$("#cate01").append("<a href='${header_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
-							$("#cf01").append("<li><a href='${footer_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"'>"+value[i].cateName+"</a></li>");	
+							$("#cate01").append("<a href='${path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
+							$("#cf01").append("<li><a href='${path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"'>"+value[i].cateName+"</a></li>");	
 						} else if(value[i].cateGroup == "공연"){
-							$("#cate02").append("<a href='${header_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
-							$("#cf02").append("<li><a href='${footer_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"'>"+value[i].cateName+"</a></li>");
+							$("#cate02").append("<a href='${path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
+							$("#cf02").append("<li><a href='${path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"'>"+value[i].cateName+"</a></li>");
 						} else if(value[i].cateGroup == "축제"){
-							$("#cate03").append("<a href='${header_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
-							$("#cf03").append("<li><a href='${footer_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"'>"+value[i].cateName+"</a></li>");
+							$("#cate03").append("<a href='${path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
+							$("#cf03").append("<li><a href='${path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"'>"+value[i].cateName+"</a></li>");
 						}
 					}
 				});

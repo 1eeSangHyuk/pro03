@@ -1,7 +1,6 @@
 show databases;
 use busan;
 
-alter table review add column regId varchar(8);
 
 -- 카테고리
 create table category(	
@@ -52,6 +51,6 @@ create table registration
      constraint foreign key (visitId) references visit(visitId)
 );
 
-alter table registration add column 
+
 
 commit;

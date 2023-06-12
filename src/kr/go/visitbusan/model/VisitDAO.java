@@ -157,7 +157,27 @@ public class VisitDAO {
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
 		}
 		return visitVOList;
+	}
+	
+	public int getLikeCnt(String visitId){
+		int i = 0;
+		try{
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.VISIT_LIKECNT);
+			pstmt.setString(1, visitId);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				i = rs.getInt("likeCnt");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
+		}
+		return i;
 	}
 }

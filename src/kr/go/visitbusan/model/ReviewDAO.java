@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import kr.go.visitbusan.dto.Review;
 import kr.go.visitbusan.util.MySQL8;
 
-public class ReviewDAO {
+public class ReviewDAO implements ReviewDAOInterface{
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
 	// Review 전체를 List로 출력
-	public ArrayList<Review> ReviewListAll(){
+	public ArrayList<Review> reviewListAll(){
 		ArrayList<Review> reviewList = new ArrayList<Review>();
 		//notice 테이블에서 모든 레코드를 검색하여 반환된 ResultSet을 notiList에 add를 한다.
 		try {
@@ -30,7 +30,37 @@ public class ReviewDAO {
 				rev.setReviewedAt(rs.getString("reviewedAt"));
 				rev.setReviewedBy(rs.getString("reviewedBy"));
 				rev.setVisitId(rs.getString("VisitId"));
-				rev.setRegId(rs.getString("RegId"));
+				rev.setPoint(rs.getInt("point"));
+				rev.setImg(rs.getString("img"));
+				rev.setLikeCnt(rs.getInt("likeCnt"));
+				reviewList.add(rev);
+			}
+		} catch (ClassNotFoundException e) { //오라클 JDBC 클래스가 없거나 경로가 다른 경우 발생
+			e.printStackTrace();
+		} catch (SQLException e){	//sql 구문이 틀린 경우 발생
+			e.printStackTrace();			
+		} catch (Exception e){	//알 수 없는 예외인 경우 발생
+			e.printStackTrace();
+		}
+		MySQL8.close(conn, pstmt, rs);
+		return reviewList;
+	}
+	
+	public ArrayList<Review> reviewListbyVisitId(String visitId){
+		ArrayList<Review> reviewList = new ArrayList<Review>();
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.REVIEW_LIST_BY_VISITID);
+			pstmt.setString(1, visitId);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Review rev = new Review();
+				rev.setReviewId(rs.getString("reviewId"));
+				rev.setReviewTitle(rs.getString("reviewTitle"));
+				rev.setReviewContent(rs.getString("reviewContent"));
+				rev.setReviewedAt(rs.getString("reviewedAt"));
+				rev.setReviewedBy(rs.getString("reviewedBy"));
+				rev.setVisitId(rs.getString("VisitId"));
 				rev.setPoint(rs.getInt("point"));
 				rev.setImg(rs.getString("img"));
 				rev.setLikeCnt(rs.getInt("likeCnt"));
@@ -48,7 +78,7 @@ public class ReviewDAO {
 	}
 	
 	// review like + 1
-	public int revieweUpdateLikeCnt(String reviewId) {
+	public int reviewUpdateLikeCnt(String reviewId) {
 		int cnt = 0;
 		try {
 			conn = MySQL8.getConnection();
@@ -79,9 +109,8 @@ public class ReviewDAO {
 			pstmt.setString(3, rev.getReviewContent());
 			pstmt.setString(4, rev.getReviewedBy());
 			pstmt.setString(5, rev.getVisitId());
-			pstmt.setString(6, rev.getRegId());
-			pstmt.setInt(7, rev.getPoint());
-			pstmt.setString(8, rev.getImg());
+			pstmt.setInt(6, rev.getPoint());
+			pstmt.setString(7, rev.getImg());
 			cnt = pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -96,13 +125,13 @@ public class ReviewDAO {
 	
 	// NoticeId 생성기
 	public String reviewIdGenerator(){
-		String ReviewId = "";
+		String reviewId = "";
 		try {
 			conn = MySQL8.getConnection();
 			pstmt = conn.prepareStatement(MySQL8.REVIEW_REVIEWID_GENERATOR);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				ReviewId = rs.getString("reviewId");
+				reviewId = rs.getString("reviewId");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -112,9 +141,9 @@ public class ReviewDAO {
 			MySQL8.close(conn, pstmt, rs);
 		}
 		
-		int tmp = Integer.parseInt(ReviewId) + 1;
-		ReviewId = tmp + "";
-		return ReviewId;
+		int tmp = Integer.parseInt(reviewId) + 1;
+		reviewId = tmp + "";
+		return reviewId;
 	}
 	
 	// Notice Update
@@ -134,8 +163,7 @@ public class ReviewDAO {
 				rev.setReviewedAt(rs.getString("reviewedAt"));
 				rev.setReviewedBy(rs.getString("reviewedBy"));
 				rev.setVisitId(rs.getString("VisitId"));
-				rev.setRegId(rs.getString("RegId"));
-				rev.setPoint(rs.getInt("pointt"));
+				rev.setPoint(rs.getInt("point"));
 				rev.setImg(rs.getString("img"));
 				rev.setLikeCnt(rs.getInt("likeCnt"));
 			}
@@ -196,6 +224,37 @@ public class ReviewDAO {
 		}
 		MySQL8.close(conn, pstmt);
 		return cnt;
+	}
+	
+	public Review reviewDetail(String reviewId){
+		Review rev = new Review();
+		
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.REVIEW_DETAIL);
+			pstmt.setString(1, reviewId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				rev.setReviewId(rs.getString("reviewId"));
+				rev.setReviewTitle(rs.getString("reviewTitle"));
+				rev.setReviewContent(rs.getString("reviewContent"));
+				rev.setReviewedAt(rs.getString("reviewedAt"));
+				rev.setReviewedBy(rs.getString("reviewedBy"));
+				rev.setVisitId(rs.getString("VisitId"));
+				rev.setPoint(rs.getInt("point"));
+				rev.setImg(rs.getString("img"));
+				rev.setLikeCnt(rs.getInt("likeCnt"));
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e){
+			e.printStackTrace();			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		MySQL8.close(conn, pstmt, rs);
+		return rev;
 	}
 	
 }

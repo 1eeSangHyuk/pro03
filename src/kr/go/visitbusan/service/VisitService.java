@@ -43,4 +43,9 @@ public class VisitService {
 		ArrayList<VisitVO> visitVOList = vdao.getVisitVO();
 		return visitVOList;
 	}
+	
+	public int getLikeCnt(String visitId){
+		int i = vdao.getLikeCnt(visitId);
+		return i;
+	}
 }

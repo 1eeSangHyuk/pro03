@@ -20,7 +20,7 @@
 <%@ include file="../../header.jsp" %>
 	<div class="container is-fullhd">
 		<h2 class="title">회원가입페이지</h2>
-		<form name="frm1" id="frm1" action="${path }/UserJoinPro.do" method="post" onsubmit="return joinCheck(this)">
+		<form name="frm1" id="frm1" action="${path }/MemberJoinPro.do" method="post" onsubmit="return joinCheck(this)">
 			<table class="table is-striped">
 				<tbody>
 					<tr>

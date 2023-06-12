@@ -38,6 +38,30 @@ public class RegiDAO {
 		return regiList;
 	}
 	
+	public ArrayList<Registration> RegiList(String memberId, String visitId){
+		ArrayList<Registration> regiList = new ArrayList<Registration>();
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.REGI_LIST_BY_MEMBER_ID_VISIT_ID);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, visitId);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				Registration regi = new Registration();
+				regi.setRegId(rs.getString("regId"));
+				regi.setRegisteredBy(rs.getString("registeredBy"));
+				regi.setVisitId(rs.getString("visitId"));
+				regi.setRegDate(rs.getString("regDate"));
+				regi.setrStatus(rs.getString("rStatus"));
+				regiList.add(regi);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
+		}	
+		return regiList;
+	}
+	
 	public ArrayList<RegistrationVO> RegiVOListByMemberId(String memberId){
 		ArrayList<RegistrationVO> regiVOList = new ArrayList<RegistrationVO>();
 		try {
@@ -63,6 +87,7 @@ public class RegiDAO {
 		}	
 		return regiVOList;
 	}
+
 	
 	public RegistrationVO RegiVOBYRegId(String regId){
 		RegistrationVO regi = new RegistrationVO();

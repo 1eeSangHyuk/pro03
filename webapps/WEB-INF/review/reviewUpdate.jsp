@@ -29,8 +29,8 @@
 							<tr>
 								<th><label for="reviewTitle">제목</label></th>
 								<td>
-									<input type="hidden" name="reviewedBy" id="reviewedBy" value="${sid }">
-									<input type="hidden" name="reviewId" id="reviewId" value="${review.reviewedBy }">
+									<input type="hidden" name="reviewedBy" id="reviewedBy" value="${review.reviewedBy }">
+									<input type="hidden" name="reviewId" id="reviewId" value="${review.reviewId }">
 									<input type="text" name="noticeTitle" id="noticeTitle" maxlength="100" value="${review.reviewTitle }" required autofocus>
 								</td>
 							</tr>
@@ -73,8 +73,8 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="submit" value="글 수정" class="btn btn-primary">
-									<a href="${path }/ReviewList.do" class="btn btn-primary">글 목록</a>
+									<input type="submit" value="글 수정" class="button is-primary">
+									<a href="${path }/ReviewList.do" class="button is-info">글 목록</a>
 								</td>
 							</tr>
 						</tbody>

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import kr.go.visitbusan.dto.QnA;
 import kr.go.visitbusan.util.MySQL8;
 
-public class QnADAO {
+public class QnADAO implements QnADAOInterface {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
@@ -24,10 +24,10 @@ public class QnADAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				QnA qna = new QnA();
-				qna.setQid(rs.getString("qna"));
+				qna.setqId(rs.getString("qId"));
 				qna.setqTitle(rs.getString("qTitle"));
 				qna.setqContent(rs.getString("qContent"));
-				qna.setqType(rs.getString("qType"));
+				qna.setqType(rs.getInt("qType"));
 				qna.setqIdGroup(rs.getString("qIdGroup"));
 				qna.setAskedAt(rs.getString("askedAt"));
 				qna.setAskedBy(rs.getString("askedBy"));
@@ -56,10 +56,10 @@ public class QnADAO {
 				rs = pstmt.executeQuery();
 				while(rs.next()){
 					QnA qna = new QnA();
-					qna.setQid(rs.getString("qna"));
+					qna.setqId(rs.getString("qId"));
 					qna.setqTitle(rs.getString("qTitle"));
 					qna.setqContent(rs.getString("qContent"));
-					qna.setqType(rs.getString("qType"));
+					qna.setqType(rs.getInt("qType"));
 					qna.setqIdGroup(rs.getString("qIdGroup"));
 					qna.setAskedAt(rs.getString("askedAt"));
 					qna.setAskedBy(rs.getString("askedBy"));
@@ -88,10 +88,10 @@ public class QnADAO {
 				pstmt.setString(1, qId);
 				rs = pstmt.executeQuery();
 				if(rs.next()){
-					qna.setQid(rs.getString("qna"));
+					qna.setqId(rs.getString("qId"));
 					qna.setqTitle(rs.getString("qTitle"));
 					qna.setqContent(rs.getString("qContent"));
-					qna.setqType(rs.getString("qType"));
+					qna.setqType(rs.getInt("qType"));
 					qna.setqIdGroup(rs.getString("qIdGroup"));
 					qna.setAskedAt(rs.getString("askedAt"));
 					qna.setAskedBy(rs.getString("askedBy"));
@@ -208,10 +208,10 @@ public class QnADAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				qna.setQid(rs.getString("qna"));
+				qna.setqId(rs.getString("qId"));
 				qna.setqTitle(rs.getString("qTitle"));
 				qna.setqContent(rs.getString("qContent"));
-				qna.setqType(rs.getString("qType"));
+				qna.setqType(rs.getInt("qType"));
 				qna.setqIdGroup(rs.getString("qIdGroup"));
 				qna.setAskedAt(rs.getString("askedAt"));
 				qna.setAskedBy(rs.getString("askedBy"));
@@ -236,7 +236,7 @@ public class QnADAO {
 			pstmt = conn.prepareStatement(MySQL8.QNA_UPDATE);
 			pstmt.setString(1, qna.getqTitle());
 			pstmt.setString(2, qna.getqContent());
-			pstmt.setString(3, qna.getQid());
+			pstmt.setString(3, qna.getqId());
 			cnt = pstmt.executeUpdate();			
 		} catch (ClassNotFoundException e) { //오라클 JDBC 클래스가 없거나 경로가 다른 경우 발생
 			e.printStackTrace();
@@ -287,6 +287,70 @@ public class QnADAO {
 		}
 		MySQL8.close(conn, pstmt);
 		return cnt;
+	}
+
+	@Override
+	public ArrayList<QnA> qnAAnsweredListByQIdGroup(String qIdGroup) {
+		ArrayList<QnA> qnAList = new ArrayList<QnA>();
+		//notice 테이블에서 모든 레코드를 검색하여 반환된 ResultSet을 notiList에 add를 한다.
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.QNA_LIST_FORANSWER_BY_QIDGROUP);
+			pstmt.setString(1, qIdGroup);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				QnA qna = new QnA();
+				qna.setqId(rs.getString("qId"));
+				qna.setqTitle(rs.getString("qTitle"));
+				qna.setqContent(rs.getString("qContent"));
+				qna.setqType(rs.getInt("qType"));
+				qna.setqIdGroup(rs.getString("qIdGroup"));
+				qna.setAskedAt(rs.getString("askedAt"));
+				qna.setAskedBy(rs.getString("askedBy"));
+				qna.setReadCnt(rs.getInt("readCnt"));
+				qnAList.add(qna);
+			}
+		} catch (ClassNotFoundException e) { //오라클 JDBC 클래스가 없거나 경로가 다른 경우 발생
+			e.printStackTrace();
+		} catch (SQLException e){	//sql 구문이 틀린 경우 발생
+			e.printStackTrace();			
+		} catch (Exception e){	//알 수 없는 예외인 경우 발생
+			e.printStackTrace();
+		}
+		MySQL8.close(conn, pstmt, rs);
+		return qnAList;
+	}
+
+	@Override
+	public ArrayList<QnA> qnAQuestionListByQIdGroup(String qIdGroup) {
+		ArrayList<QnA> qnAList = new ArrayList<QnA>();
+		//notice 테이블에서 모든 레코드를 검색하여 반환된 ResultSet을 notiList에 add를 한다.
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.QNA_LIST_FORQUESTION_BY_QIDGROUP);
+			pstmt.setString(1, qIdGroup);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				QnA qna = new QnA();
+				qna.setqId(rs.getString("qId"));
+				qna.setqTitle(rs.getString("qTitle"));
+				qna.setqContent(rs.getString("qContent"));
+				qna.setqType(rs.getInt("qType"));
+				qna.setqIdGroup(rs.getString("qIdGroup"));
+				qna.setAskedAt(rs.getString("askedAt"));
+				qna.setAskedBy(rs.getString("askedBy"));
+				qna.setReadCnt(rs.getInt("readCnt"));
+				qnAList.add(qna);
+			}
+		} catch (ClassNotFoundException e) { //오라클 JDBC 클래스가 없거나 경로가 다른 경우 발생
+			e.printStackTrace();
+		} catch (SQLException e){	//sql 구문이 틀린 경우 발생
+			e.printStackTrace();			
+		} catch (Exception e){	//알 수 없는 예외인 경우 발생
+			e.printStackTrace();
+		}
+		MySQL8.close(conn, pstmt, rs);
+		return qnAList;
 	}
 	
 }

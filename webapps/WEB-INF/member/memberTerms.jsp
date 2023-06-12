@@ -363,13 +363,13 @@
 		<div class="control" style="float:left; padding-left:280px; padding-top:20px;">
 			<input type="checkbox" id="ck_item2" name="ck_item2">
 			<label for="ck_item2">개인정보처리방침에 동의</label><br><br>
-		</div><br>
+		</div><hr>
 		<div class="control" style="float:left; padding-left:300px;">
 			<label for="ck_item3" onclick="protocol()">
 				<strong>전체 약관에 동의</strong>
 			</label>
 		</div>
-		<br>
+		<hr>
 		<div class="control" style="float:left; padding-left:300px; padding-top:30px;">
 			<button type="button" id="in_btn1" class="button is-primary">다음 단계</button>
 		</div>

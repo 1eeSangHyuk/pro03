@@ -35,36 +35,42 @@ public class MySQL8 {
 	public final static String NOTICE_DETAIL = "select * from notice where noticeId = ?";
 	public final static String NOTICE_UPDATE_READCNT = "update notice set readcnt = readcnt + 1 where noticeId = ?";
 	public final static String NOTICE_INSERT = "insert into notice(noticeId, noticeTitle, noticeContent, writtenBy, attachment) values (?, ?, ?, ?, ?)";
-	public final static String NOTICE_NOTICEID_GENERATOR = "select noticeId from (select noticeId from notice order by noticeId desc) where rownum = 1";
-	public final static String NOTICE_UPDATE_CHANGED_ATTACHMENT = "update notice set noticeTitle = ?, noticeContent = ?, attachment = ?, writtenAt = default where noticeId = ?";
-	public final static String NOTICE_UPDATE_NOT_CHANGED_ATTACHMENT = "update notice set noticeTitle = ?, noticeContent = ?, writtenAt = default where noticeId = ?";
+	public final static String NOTICE_NOTICEID_GENERATOR = "select noticeId from notice order by noticeId desc limit 1";
+	public final static String NOTICE_UPDATE_CHANGED_ATTACHMENT = "update notice set noticeTitle = ?, noticeContent = ?, attachment = ? where noticeId = ?";
+	public final static String NOTICE_UPDATE_NOT_CHANGED_ATTACHMENT = "update notice set noticeTitle = ?, noticeContent = ? where noticeId = ?";
 	public final static String NOTICE_DELETE = "delete from notice where noticeId = ?";
 	
 	
 	// REVIEW
 	public final static String REVIEW_LIST_ALL = "select * from review order by reviewId desc";
 	public final static String REVIEW_DETAIL = "select * from review where reviewId = ?";
-	public final static String REVIEW_LIST_BY_VISITID = "select * from review where visitid = ?";
+	public final static String REVIEW_LIST_BY_VISITID = "select * from review where visitid = ? order by reviewId";
 	public final static String REVIEW_LIST_BY_MEMBERID = "select * from review where reviewedBy = ?";
 	public final static String REVIEW_UPDATE_LIKECNT = "update review set likecnt = likecnt + 1 where reviewId = ?";
 	public final static String REVIEW_INSERT = "insert into review(reviewId, reviewTitle, reviewContent, reviewedBy, visitId, point, img) values (?, ?, ?, ?, ?, ?, ?)";
-	public final static String REVIEW_REVIEWID_GENERATOR = "select reviewId from (select reviewId from review order by reviewId desc) where rownum = 1";
-	public final static String REVIEW_UPDATE_CHANGED_IMG = "update review set reviewTitle = ?, reviewContent = ?, writtenAt = default, img = ? where reviewId = ?";
-	public final static String REVIEW_UPDATE_NOT_CHANGED_IMG = "update review set reviewTitle = ?, reviewContent = ?, writtenAt = default, where reviewId = ?";
+	public final static String REVIEW_REVIEWID_GENERATOR = "select reviewId from review order by reviewId desc limit 1";
+	public final static String REVIEW_UPDATE_CHANGED_IMG = "update review set reviewTitle = ?, reviewContent = ? img = ? where reviewId = ?";
+	public final static String REVIEW_UPDATE_NOT_CHANGED_IMG = "update review set reviewTitle = ?, reviewContent = ? where reviewId = ?";
 	public final static String REVIEW_DELETE = "delete from review where reviewId = ?";
 	
 	
 	// QNA
-	public final static String QNA_LIST_ALL = "select * from qna order by parno desc, qno asc";
+	public final static String QNA_LIST_ALL = "select * from qna order by qIdGroup desc, qId asc";
 	public final static String QNA_LIST_BY_QIDGROUP = "select * from qna where qIdGroup = ? order by qid asc";
+	public final static String QNA_LIST_FORANSWER_BY_QIDGROUP = "select * from qna where qIdGroup = ? and qType = 2 order by qid asc";
+	public final static String QNA_LIST_FORQUESTION_BY_QIDGROUP = "select * from qna where qIdGroup = ? and qType = 1 order by qid asc";
 	public final static String QNA_LIST_DETAIL = "select * from qna where qid=?";
+	public final static String QNA_QUESTION_DETAIL = "select * from qna where qid=? and qIdGroup = '1'";							//신규
+	public final static String QNA_ANSWER_DETAIL = "select * from qna where qid=? and qIdGroup = '1'";								//신규
 	public final static String QNA_UPDATE_READCNT = "update qna set readcnt = readcnt + 1 where qId = ?";
 	public final static String QNA_INSERT_Q = "insert into qna(qid, qTitle, qContent, qType, qIdGroup, askedBy) values (?, ?, ?, ?, ?, ?)";
-	public final static String QNA_QID_GENERATOR = "select qid from (select * from qna order by qid desc) where rownum = 1";
 	public final static String QNA_INSERT_A = "insert into qna(qid, qTitle, qContent, qType, qIdGroup, askedBy) values (?, ?, ?, ?, ?, ?)";
-	public final static String QNA_UPDATE = "update qna set qTitle = ?, qContent = ? askedAt = default where qid=?";
+	public final static String QNA_QID_GENERATOR = "select qid from qna order by qid desc limit 1";
+	public final static String QNA_UPDATE = "update qna set qTitle = ?, qContent = ? where qid = ?";				// QNA 수정을 Q와 A로 나눌지 의견 청취 필요
+	public final static String QNA_UPDATE_QUESTION = "update qna set qTitle = ?, qContent = ? where qid = ?";		// 신규
+	public final static String QNA_UPDATE_ANSWER = "update qna set qTitle = ?, qContent = ? where qid=?";			// 신규
 	public final static String QNA_DELETE_ALL_BY_QIDGROUP = "delete from qna where qIdGroup = ?";
-	public final static String QNA_DELETE_REPLY = "delete from qna where qid = ?";
+	public final static String QNA_DELETE_REPLY = "delete from qna where qId = ?";
 	
 	
 	//visit
@@ -75,6 +81,7 @@ public class MySQL8 {
 	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitMapLink=? visitImgMain=?, visitImgSub1=?, visitImgSub2=?, visitText=? where visitId=?";
 	public final static String ADMIN_DELETE_VISIT = "DELETE FROM VISIT WHERE visitId=?";
 	public final static String VISIT_ID_GENERATOR = "SELECT VISITID FROM VISIT ORDER BY VISITID DESC LIMIT 1";
+	public final static String VISIT_LIKECNT = "SELECT LIKECNT FROM VISIT WHERE VISITID=?";
 	
 	//cate
 	public final static String CATE_BY_CATECODE = "SELECT * FROM CATEGORY WHERE CATECODE=?";
@@ -85,6 +92,7 @@ public class MySQL8 {
 	
 	//regi
 	public final static String REGI_LIST_BY_MEMBER_ID = "select * from registration where registeredBy=?";
+	public final static String REGI_LIST_BY_MEMBER_ID_VISIT_ID = "select * from registration where registeredBy=? and visitId=?";
 	public final static String REGI_VO_LIST_BY_MEMBER_ID = "select b.regId, b.visitId, b.registeredBy, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where b.registeredBy=? and a.visitId = b.visitId order by b.regDate desc";
 	public final static String REGI_VO_BY_REG_ID = "select b.regId, b.visitId, b.registeredBy, a.visitTitle, a.visitAddr, b.regDate, b.tourDate, b.rStatus from visit a, registration b where b.regId=? and a.visitId = b.visitId";
 	public final static String INSERT_REGI = "INSERT INTO REGISTRATION VALUES(?, ?, ?, default, ?, default);";
@@ -103,6 +111,11 @@ public class MySQL8 {
 	public final static String POKEVO_LIST_BY_MEMBER_ID = "select a.pokeId, a.pokedBy, a.visitId, b.visitTitle, b.visitAddr from poke a, visit b where a.visitId = b.visitId and pokedBy=? order by a.pokeId desc";
 	public final static String COUNT_POKE_BY_VISIT_ID = "SELECT COUNT(*) as count from poke where visitId=? group by visitId";
 	
+	//like
+	public final static String CHECK_LIKE = "SELECT * FROM likeCtrl WHERE LIKEDBY=? AND VISITID=?";
+	public final static String LIKE_ID_GENERATOR = "SELECT likeID FROM likeCtrl ORDER BY LIKEID DESC LIMIT 1";
+	public final static String INSERT_LIKE = "INSERT INTO likeCtrl VALUES(?, ?, ?)";
+	public final static String DELETE_LIKE = "DELETE FROM likeCtrl WHERE likeId=?";
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException{
 		Class.forName(driver);

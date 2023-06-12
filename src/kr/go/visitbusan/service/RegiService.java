@@ -14,6 +14,11 @@ public class RegiService {
 		return regiList;
 	}
 	
+	public ArrayList<Registration> RegiList(String memberId, String visitId){
+		ArrayList<Registration> regiList = rdao.RegiList(memberId, visitId);
+		return regiList;
+	}
+	
 	public ArrayList<RegistrationVO> RegiVOListByMemberId(String memberId){
 		ArrayList<RegistrationVO> regiVOList = rdao.RegiVOListByMemberId(memberId);
 		return regiVOList;

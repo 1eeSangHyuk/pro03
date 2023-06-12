@@ -28,7 +28,7 @@
 	</section> -->
 	
 	<div>
-		<button type="button" id="like" class="button" onClick="" value="">좋아요(${visit.likeCnt })</button>
+		<button type="button" id="like" class="button is-info" onClick="likeCtrl()" value=""></button>
 		<button type="button" id="poke" class="button is-info" onClick="pokeCtrl()" value=""></button>
 	</div>
 	
@@ -58,7 +58,85 @@
 		
 		<!-- 리뷰 -->
 		<div id="review-content" class="is-hidden">
-		
+			<c:forEach var="review" items="${reviewList }">
+				<article class="media">
+				  <div class="media-content">
+				    <div class="content">
+				      <p style="color:black;">
+			      		<c:if test="${review.point eq 5 }"><strong>★★★★★</strong></c:if>
+			      		<c:if test="${review.point eq 4 }"><strong>★★★★</strong></c:if>
+			      		<c:if test="${review.point eq 3 }"><strong>★★★</strong></c:if>
+			      		<c:if test="${review.point eq 2 }"><strong>★★</strong></c:if>
+			      		<c:if test="${review.point eq 1 }"><strong>★</strong></c:if>
+			      		<br>
+				        <strong>${review.reviewedBy }</strong>&nbsp;&nbsp;<small>${review.reviewedAt }</small>
+				        <br>
+				        ${review.reviewContent }
+				      </p>
+				      <figure class="image is-128x128">
+					    <img src="${path }/" alt="review_pic">
+					  </figure>
+				    </div>
+				  </div>
+				  <c:if test="${sid.equals(review.reviewId) }">
+				    <div class="media-right">
+				      <button class="delete"></button>
+				    </div>
+				  </c:if>
+				</article>
+				<hr>
+			</c:forEach>
+			<c:if test="${empty reviewList }">
+				<h2 class="subtitle">현재 헤당상품에 대한 리뷰가 존재하지 않습니다.</h2>
+			</c:if>
+			<c:if test="${reviewQ.equals('y') }">
+			<form action="" method="post">
+				<article class="media">
+				  <div class="media-content">
+				    <div class="field">
+				      <input class="input" type="text" placeholder="후기 제목을 입력해주세요..." id="reviewTitle" name="reviewTitle">
+				      <input type="hidden" id="reviewedBy" name="reviewedBy" value="${sid }">
+				      <input type="hidden" id="visitId" name="visitId" value="${visit.visitId }">
+				      <p class="control">
+				        <textarea class="textarea" placeholder="후기를 작성해주세요..." id="reviewContent" name="reviewContent" ></textarea>
+				      </p>
+				    </div>
+					<div id="file-js-example" class="file has-name">
+					  <label class="file-label">
+					    <input class="file-input" type="file" id="img" name="img">
+					    <span class="file-cta">
+					      <span class="file-icon">
+					        <i class="fas fa-upload"></i>
+					      </span>
+					      <span class="file-label">
+					        Choose a file…
+					      </span>
+					    </span>
+					    <span class="file-name">
+					      No file uploaded
+					    </span>
+					  </label>
+					</div>
+					<script>
+					  const fileInput = document.querySelector('#file-js-example input[type=file]');
+					  fileInput.onchange = () => {
+					    if (fileInput.files.length > 0) {
+					      const fileName = document.querySelector('#file-js-example .file-name');
+					      fileName.textContent = fileInput.files[0].name;
+					    }
+					  }
+					</script>
+				    <nav class="level">
+				      <div class="level-left">
+				        <div class="level-item">
+				          <input type="submit" class="button is-info" value="후기 작성하기">
+				        </div>
+				      </div>
+				    </nav>
+				  </div>
+				</article>
+			</form>
+			</c:if>
 		</div>
 	</div>
 </div>
@@ -76,6 +154,12 @@
 	}
 	function switchReview(){
 	    preSwitch();
+	    var params = { visitId:"<c:out value='${visitId }'/>"}
+	    $.ajax({
+	    	url:"${path }/ReviewListbyVisitId.do",
+	    	type:"post",
+			data:params
+	    });
 	    $("#review").addClass("is-active");
 	    $("#review-content").removeClass("is-hidden");
 	}
@@ -90,8 +174,10 @@
 	$(document).ready(function(){
 		if('${sid }' == null){
 			$("#poke").html('찜하기');
+			$("#like").html('좋아요');//(${visit.likeCnt })
 		} else {
 			var params = { pokedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
+			var params = { likedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
 			//console.log(params.pokedBy);
 			$.ajax({
 				url:"${path }/PokeCheck.do",
@@ -99,13 +185,29 @@
 				dataType:"json",
 				data:params,
 				success:function(result){
-					console.log(result);
+					//console.log(result);
 					if(result.res == '0'){
 						$("#poke").val('no');
 						$("#poke").html('찜하기');
 					} else {
 						$("#poke").val('yes');
 						$("#poke").html('찜하기 취소');
+					}
+				}
+			});
+			$.ajax({
+				url:"${path }/LikeCheck.do",
+				type:"post",
+				dataType:"json",
+				data:params,
+				success:function(result){
+					console.log(result);
+					if(result.res == '0'){
+						$("#like").val('no');
+						$("#like").html('♡('+result.cnt+')');
+					} else {
+						$("#like").val('yes');
+						$("#like").html('♥');
 					}
 				}
 			});
@@ -138,10 +240,46 @@
 				dataType:"json",
 				data:params,
 				success:function(result){
-					console.log(result);
+					//console.log(result);
 					if(result.res == "1"){
 						$("#poke").val('no');
 						$("#poke").html('찜하기');
+					}
+				}
+			});
+		}
+	}
+	
+	function likeCtrl(){
+		if("${sid }" == ""){
+			alert("로그인 후 사용하실 수 있는 기능입니다.");
+		} else if($("#like").val() == "no"){
+			var params = {likedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
+			$.ajax({
+				url:"${path }/LikeInsertPro.do",
+				type:"post",
+				dataType:"json",
+				data:params,
+				success:function(result){
+					//console.log(result);
+					if(result.res == "1"){
+						$("#like").val('yes');
+						$("#like").html('♥');
+					}
+				}
+			});
+		} else if($("#like").val() == "yes"){
+			var params = {likedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
+			$.ajax({
+				url:"${path }/LikeDeletePro.do",
+				type:"post",
+				dataType:"json",
+				data:params,
+				success:function(result){
+					//console.log(result);
+					if(result.res == "1"){
+						$("#poke").val('no');
+						$("#poke").html('♡');
 					}
 				}
 			});

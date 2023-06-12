@@ -78,21 +78,21 @@ INSERT INTO POKE VALUES('7', 'tyler', '2');
 
 
 -- Regi 계정 더미
-insert into registration values ('000001', 'tyler', '1', '2023-06-03', '여행완료');
-insert into registration values ('000002', 'tyler', '2', '2023-06-06', '여행완료');
-insert into registration values ('000003', 'tyler', '3', '2023-06-13', '여행완료');
-insert into registration values ('000004', 'faker', '1', '2023-06-16', '여행완료');
-insert into registration values ('000005', 'faker', '2', '2023-06-30', '여행완료');
-insert into registration values ('000006', 'faker', '3', '2023-07-03', '여행완료');
-insert into registration values ('000007', 'narae', '1', '2023-08-03', '여행완료');
-insert into registration values ('000008', 'narae', '2', '2023-09-03', '여행완료');
-insert into registration values ('000009', 'narae', '3', '2023-10-03', '여행완료');
-insert into registration values ('000010', 'seonjeong', '1', '2023-06-23', '여행완료');
-insert into registration values ('000011', 'seonjeong', '2', '2023-06-09', '여행완료');
-insert into registration values ('000012', 'seonjeong', '3', '2023-06-28', '여행완료');
-insert into registration values ('000013', 'binbin', '1', '2023-06-03', '여행완료');
-insert into registration values ('000014', 'binbin', '1', '2023-06-03', '여행완료');
-insert into registration values ('000015', 'binbin', '1', '2023-06-03', '여행완료');
+insert into registration values ('6', 'tyler', '1', '2023-05-30 03:28:54', '2023-06-03', '여행완료');
+insert into registration values ('7', 'tyler', '2', '2023-05-30 03:28:54','2023-06-06', '여행완료');
+insert into registration values ('8', 'tyler', '3', '2023-05-30 03:28:54','2023-06-13', '여행완료');
+insert into registration values ('9', 'faker', '1', '2023-05-30 03:28:54','2023-06-16', '여행완료');
+insert into registration values ('10', 'faker', '2', '2023-05-30 03:28:54','2023-06-30', '여행완료');
+insert into registration values ('11', 'faker', '3', '2023-05-30 03:28:54','2023-07-03', '여행완료');
+insert into registration values ('12', 'narae', '1', '2023-05-30 03:28:54','2023-08-03', '여행완료');
+insert into registration values ('13', 'narae', '2', '2023-05-30 03:28:54','2023-09-03', '여행완료');
+insert into registration values ('14', 'narae', '3', '2023-05-30 03:28:54','2023-10-03', '여행완료');
+insert into registration values ('15', 'seonjeong', '1', '2023-05-30 03:28:54','2023-06-23', '여행완료');
+insert into registration values ('16', 'seonjeong', '2', '2023-05-30 03:28:54','2023-06-09', '여행완료');
+insert into registration values ('17', 'seonjeong', '3', '2023-05-30 03:28:54','2023-06-28', '여행완료');
+insert into registration values ('18', 'binbin', '1', '2023-05-30 03:28:54','2023-06-03', '여행완료');
+insert into registration values ('19', 'binbin', '1', '2023-05-30 03:28:54','2023-06-03', '여행완료');
+insert into registration values ('20', 'binbin', '1', '2023-05-30 03:28:54','2023-06-03', '여행완료');
 
 
 update member set pw='66S0dVtwHSD9Wcb/3csUwXVmNWTALQ4srV+zr+1ihAGXernG/RkIyS5Ypuj2EhwHZHM0Rg==' where id='admin';
