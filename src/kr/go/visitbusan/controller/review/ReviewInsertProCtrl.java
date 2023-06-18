@@ -24,7 +24,7 @@ public class ReviewInsertProCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String savePath = "/dataRev";		// 공지사항 첨부파일 저장 장소 정해야함
+		String savePath = "/WEB-INF/review/img";		// 공지사항 첨부파일 저장 장소 정해야함
 		int uploadFileSizeLimit = 10 * 1024 * 1024;	//1024 byte * 1024 byte = 1024kb * 10 = 10 mega byte
 		String encType = "UTF-8";
 		ServletContext context = getServletContext();
@@ -45,7 +45,7 @@ public class ReviewInsertProCtrl extends HttpServlet {
 			if (attImgName == null) { // 파일이 업로드 되지 않았을때
 				System.out.print("파일 업로드 실패~! / 첨부파일 없음");
 			}  // 파일이 업로드 되었을때
-			reviewTitle = multi.getParameter("reivewTitle");
+			reviewTitle = multi.getParameter("reviewTitle");
 			reviewContent = multi.getParameter("reviewContent");
 			reviewedBy = multi.getParameter("reviewedBy");
 			visitId = multi.getParameter("visitId");

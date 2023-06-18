@@ -78,9 +78,10 @@
 					  </figure>
 				    </div>
 				  </div>
-				  <c:if test="${sid eq review.reviewId }">
+				  <c:if test="${sid eq review.reviewedBy }">
 			      <div class="media-right">
-			        <button onclick="deleteReview()" class="delete">delete</button>
+			        <a href="${path }/ReviewDeletePro.do?reviewId=${review.reviewId }">삭제하기</a><br>
+			        <a href="${path }//ReviewUpdate.do?reviewId=${review.reviewId }">수정하기</a>
 			      </div>
 			      </c:if>
 				</article>
@@ -90,7 +91,7 @@
 				<h2 class="subtitle">현재 헤당상품에 대한 리뷰가 존재하지 않습니다.</h2>
 			</c:if>
 			<c:if test="${reviewQ.equals('y') }">
-			<form action="" method="post">
+			<form action="${path }/ReviewInsertPro.do" method="post" enctype="multipart/form-data">
 				<article class="media">
 				  <div class="media-content">
 				    <div class="field">
@@ -100,6 +101,15 @@
 				      <p class="control">
 				        <textarea class="textarea" placeholder="후기를 작성해주세요..." id="reviewContent" name="reviewContent" ></textarea>
 				      </p>
+					  <div class="select">
+					    <select id="point" name="point" >
+					      <option value="5">★★★★★</option>
+					      <option value="4">★★★★</option>
+					      <option value="3">★★★</option>
+					      <option value="2">★★</option>
+					      <option value="1">★</option>
+					    </select>
+					  </div>
 				    </div>
 					<div id="file-js-example" class="file has-name">
 					  <label class="file-label">

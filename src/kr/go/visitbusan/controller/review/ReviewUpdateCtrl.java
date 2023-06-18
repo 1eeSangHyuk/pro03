@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.go.visitbusan.dto.Review;
 import kr.go.visitbusan.service.ReviewService;
 
-@WebServlet("/Review")
+@WebServlet("/ReviewUpdate.do")
 public class ReviewUpdateCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

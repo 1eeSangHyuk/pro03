@@ -31,7 +31,7 @@
 								<td>
 									<input type="hidden" name="reviewedBy" id="reviewedBy" value="${review.reviewedBy }">
 									<input type="hidden" name="reviewId" id="reviewId" value="${review.reviewId }">
-									<input type="text" name="noticeTitle" id="noticeTitle" maxlength="100" value="${review.reviewTitle }" required autofocus>
+									<input type="text" name="reviewTitle" id="reviewTitle" maxlength="100" value="${review.reviewTitle }" required autofocus>
 								</td>
 							</tr>
 							<tr>
