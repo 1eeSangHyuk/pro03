@@ -38,15 +38,11 @@ public class LikeCheckCtrl extends HttpServlet {
 		LikeService lService = new LikeService();
 		LikeCtrl nLike = lService.CheckLike(like);
 		
-		VisitService vService = new VisitService();
-		int i = vService.getLikeCnt(visitId);
-		
 		if (nLike.getLikeId() != null){
-			json.put("cnt", i);
+			json.put("res", "1");
 			PrintWriter out = response.getWriter();
 			out.println(json.toString());
 		} else {
-			request.setAttribute("likeId", nLike.getLikeId());
 			json.put("res", "0");
 			PrintWriter out = response.getWriter();
 			out.println(json.toString());

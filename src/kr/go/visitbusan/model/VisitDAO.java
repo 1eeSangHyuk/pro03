@@ -180,4 +180,34 @@ public class VisitDAO {
 		}
 		return i;
 	}
+	
+	public int insertLike(String visitId){
+		int i = 0;
+		try{
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.INSERT_LIKECNT);
+			pstmt.setString(1, visitId);
+			i = pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
+		}
+		return i;
+	}
+	
+	public int deleteLike(String visitId){
+		int i = 0;
+		try{
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.DELETE_LIKECNT);
+			pstmt.setString(1, visitId);
+			i = pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt, rs);
+		}
+		return i;
+	}
 }

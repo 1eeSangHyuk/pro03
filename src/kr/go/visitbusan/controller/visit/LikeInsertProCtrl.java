@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import kr.go.visitbusan.dto.LikeCtrl;
 import kr.go.visitbusan.service.LikeService;
+import kr.go.visitbusan.service.VisitService;
 
 @WebServlet("/LikeInsertPro.do")
 public class LikeInsertProCtrl extends HttpServlet {
@@ -38,10 +39,14 @@ public class LikeInsertProCtrl extends HttpServlet {
 		String likeId = lService.InsertLike(like);
 		
 		if (likeId != null){
-			request.setAttribute("likeId", likeId);
-			json.put("res", "1");
-			PrintWriter out = response.getWriter();
-			out.println(json.toString());
+			VisitService vService = new VisitService();
+			int j = vService.insertLike(visitId);
+			if(j==1){
+				request.setAttribute("likeId", likeId);
+				json.put("res", "1");
+				PrintWriter out = response.getWriter();
+				out.println(json.toString());
+			}
 		} else {
 			json.put("res", "0");
 			PrintWriter out = response.getWriter();

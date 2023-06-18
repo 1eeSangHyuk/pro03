@@ -28,7 +28,7 @@ public class VisitListbyCateCodeCtrl extends HttpServlet {
 		
 		CateService cService = new CateService();
 		Category cate = cService.CatebyCateCode(cateCode);
-		request.setAttribute("cate", cate);
+		request.setAttribute("cate", cate);		
 		
 		if(visitList != null){
 			RequestDispatcher view = request.getRequestDispatcher("visit/visitListbyCateCode.jsp");

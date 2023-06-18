@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import kr.go.visitbusan.dto.LikeCtrl;
 import kr.go.visitbusan.service.LikeService;
+import kr.go.visitbusan.service.VisitService;
+
+import org.json.JSONObject;
 
 @WebServlet("/LikeDeletePro.do")
 public class LikeDeleteProCtrl extends HttpServlet {
@@ -36,13 +37,16 @@ public class LikeDeleteProCtrl extends HttpServlet {
 		
 		LikeService service = new LikeService();
 		LikeCtrl nLike = service.CheckLike(like);
-		
 		int i = service.DeleteLike(nLike.getLikeId());
 		
 		if (i > 0){
-			json.put("res", "1");
-			PrintWriter out = response.getWriter();
-			out.println(json.toString());
+			VisitService vService = new VisitService();
+			int j = vService.deleteLike(visitId);
+			if(j==1){
+				json.put("res", "1");
+				PrintWriter out = response.getWriter();
+				out.println(json.toString());
+			}
 		} else {
 			json.put("res", "0");
 			PrintWriter out = response.getWriter();

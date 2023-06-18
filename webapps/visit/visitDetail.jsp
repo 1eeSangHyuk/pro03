@@ -78,11 +78,11 @@
 					  </figure>
 				    </div>
 				  </div>
-				  <c:if test="${sid.equals(review.reviewId) }">
-				    <div class="media-right">
-				      <button class="delete"></button>
-				    </div>
-				  </c:if>
+				  <c:if test="${sid eq review.reviewId }">
+			      <div class="media-right">
+			        <button onclick="deleteReview()" class="delete">delete</button>
+			      </div>
+			      </c:if>
 				</article>
 				<hr>
 			</c:forEach>
@@ -176,14 +176,15 @@
 			$("#poke").html('찜하기');
 			$("#like").html('좋아요');//(${visit.likeCnt })
 		} else {
-			var params = { pokedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
-			var params = { likedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
-			//console.log(params.pokedBy);
+			var param1 = { pokedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
+			var param2 = { likedBy: "<c:out value='${sid }' />", visitId: "<c:out value='${visit.visitId }' />"}
+			/* console.log("pokedBy : "+param1.pokedBy);
+			console.log("likedBy : "+param2.likedBy); */
 			$.ajax({
 				url:"${path }/PokeCheck.do",
 				type:"post",
 				dataType:"json",
-				data:params,
+				data:param1,
 				success:function(result){
 					//console.log(result);
 					if(result.res == '0'){
@@ -199,12 +200,12 @@
 				url:"${path }/LikeCheck.do",
 				type:"post",
 				dataType:"json",
-				data:params,
+				data:param2,
 				success:function(result){
-					console.log(result);
+					//console.log(result);
 					if(result.res == '0'){
 						$("#like").val('no');
-						$("#like").html('♡('+result.cnt+')');
+						$("#like").html('♡');
 					} else {
 						$("#like").val('yes');
 						$("#like").html('♥');
@@ -261,7 +262,7 @@
 				dataType:"json",
 				data:params,
 				success:function(result){
-					//console.log(result);
+					console.log(result);
 					if(result.res == "1"){
 						$("#like").val('yes');
 						$("#like").html('♥');
@@ -276,10 +277,10 @@
 				dataType:"json",
 				data:params,
 				success:function(result){
-					//console.log(result);
+					console.log(result);
 					if(result.res == "1"){
-						$("#poke").val('no');
-						$("#poke").html('♡');
+						$("#like").val('no');
+						$("#like").html('♡');
 					}
 				}
 			});

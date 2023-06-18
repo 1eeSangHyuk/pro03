@@ -72,4 +72,19 @@ public class LikeDAO {
 		}
 		return i;
 	}
+	
+	public int CountLike(String visitId){
+		int i = 0;
+		try {
+			conn = MySQL8.getConnection();
+			pstmt = conn.prepareStatement(MySQL8.LIKE_COUNT);
+			pstmt.setString(1, visitId);
+			i = pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(conn, pstmt);
+		}
+		return i;
+	}
 }

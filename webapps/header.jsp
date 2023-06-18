@@ -136,31 +136,4 @@
     </div>
   </div>
 </nav>
-<script>
-	$(document).ready(function(){
-		$.ajax({
-			url:"${header_path }/MenuLoad.do",
-			type:"post",
-			enctype:"UTF-8",
-			processData:false,
-			contentType:"application/json",
-			cache:false,
-			success:function(obj){
-				//console.log(obj);
-				$(".navbar-dropdown.cate").empty();
-				$.each(obj, function(key, value){
-					for (var i=0;i<value.length;i++){
-						if(value[i].cateGroup == "여행"){
-							$("#cate01").append("<a href='${header_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");	
-						} else if(value[i].cateGroup == "공연"){
-							$("#cate02").append("<a href='${header_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
-						} else if(value[i].cateGroup == "축제"){
-							$("#cate03").append("<a href='${header_path }/VisitListbyCateCode.do?cateCode="+value[i].cateCode+"' class='navbar-item'>"+value[i].cateName+"</a>");
-						}
-					}
-				});
-			}
-		});
-	});
-</script>
 </header>

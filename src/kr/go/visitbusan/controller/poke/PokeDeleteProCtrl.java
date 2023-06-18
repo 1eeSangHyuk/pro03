@@ -36,7 +36,6 @@ public class PokeDeleteProCtrl extends HttpServlet {
 		
 		PokeService service = new PokeService();
 		Poke nPoke = service.CheckPoke(poke);
-		
 		int i = service.DeletePoke(nPoke.getPokeId());
 		
 		if (i > 0){

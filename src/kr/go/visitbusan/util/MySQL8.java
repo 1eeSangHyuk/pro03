@@ -80,8 +80,10 @@ public class MySQL8 {
 	public final static String ADMIN_INSERT_VISIT = "INSERT INTO VISIT VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, default)";
 	public final static String ADMIN_UPDATE_VISIT = "UPDATE VISIT SET visitTitle=?, visitCateCode=?, visitAddr=?, visitMapLink=? visitImgMain=?, visitImgSub1=?, visitImgSub2=?, visitText=? where visitId=?";
 	public final static String ADMIN_DELETE_VISIT = "DELETE FROM VISIT WHERE visitId=?";
-	public final static String VISIT_ID_GENERATOR = "SELECT VISITID FROM VISIT ORDER BY VISITID DESC LIMIT 1";
+	public final static String VISIT_ID_GENERATOR = "SELECT CAST(VISITID AS UNSIGNED) AS VISITID FROM VISIT ORDER BY VISITID DESC LIMIT 1";
 	public final static String VISIT_LIKECNT = "SELECT LIKECNT FROM VISIT WHERE VISITID=?";
+	public final static String INSERT_LIKECNT = "update visit set likeCnt = likeCnt + 1 where visitId=?";
+	public final static String DELETE_LIKECNT = "update visit set likeCnt = likeCnt - 1 where visitId=?";
 	
 	//cate
 	public final static String CATE_BY_CATECODE = "SELECT * FROM CATEGORY WHERE CATECODE=?";
@@ -104,7 +106,7 @@ public class MySQL8 {
 	public final static String REGI_ID_GENERATOR = "SELECT REGID FROM REGISTRATION ORDER BY REGID DESC LIMIT 1";
 		
 	//poke
-	public final static String POKE_ID_GENERATOR = "SELECT POKEID FROM POKE ORDER BY POKEID DESC LIMIT 1";
+	public final static String POKE_ID_GENERATOR = "select cast(pokeId as unsigned) as pokeId from poke order by pokeId desc limit 1";
 	public final static String INSERT_POKE = "INSERT INTO POKE VALUES(?, ?, ?)";
 	public final static String DELETE_POKE = "DELETE FROM POKE WHERE pokeId=?";
 	public final static String CHECK_POKE = "SELECT * FROM POKE WHERE POKEDBY=? AND VISITID=?";
@@ -113,9 +115,10 @@ public class MySQL8 {
 	
 	//like
 	public final static String CHECK_LIKE = "SELECT * FROM likeCtrl WHERE LIKEDBY=? AND VISITID=?";
-	public final static String LIKE_ID_GENERATOR = "SELECT likeID FROM likeCtrl ORDER BY LIKEID DESC LIMIT 1";
+	public final static String LIKE_ID_GENERATOR = "SELECT cast(likeId as unsigned) as likeId FROM likeCtrl ORDER BY LIKEID DESC LIMIT 1";
 	public final static String INSERT_LIKE = "INSERT INTO likeCtrl VALUES(?, ?, ?)";
 	public final static String DELETE_LIKE = "DELETE FROM likeCtrl WHERE likeId=?";
+	public final static String LIKE_COUNT = "select count(*) from likeCtrl where visitId=? group by visitId";
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException{
 		Class.forName(driver);

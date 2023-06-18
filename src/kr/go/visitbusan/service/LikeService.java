@@ -21,4 +21,9 @@ public class LikeService {
 		int i = ldao.DeleteLike(likeId);
 		return i;
 	}
+	
+	public int CountLike(String visitId){
+		int i = ldao.CountLike(visitId);
+		return i;
+	}
 }

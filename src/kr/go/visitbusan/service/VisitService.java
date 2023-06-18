@@ -48,4 +48,14 @@ public class VisitService {
 		int i = vdao.getLikeCnt(visitId);
 		return i;
 	}
+	
+	public int insertLike(String visitId){
+		int i = vdao.insertLike(visitId);
+		return i;
+	}
+	
+	public int deleteLike(String visitId){
+		int i = vdao.deleteLike(visitId);
+		return i;
+	}
 }
